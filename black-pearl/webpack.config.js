@@ -1,0 +1,39 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
+module.exports = {
+	mode: 'development',
+	entry: './src/index.ts',
+	devServer: {
+		contentBase: path.join(__dirname, 'build'),
+		port: 9000,
+	},
+	module: {
+		rules: [
+			{
+				test: /\.tsx?$/,
+				use: {
+					loader: 'ts-loader',
+					options: {
+						transpileOnly: true,
+					},
+				},
+				exclude: /node_modules/,
+			},
+			{
+				test: /\.(png|css|json)$/i,
+				type: 'asset/resource'
+			}
+		],
+	},
+	resolve: {
+		extensions: ['.tsx', '.ts', '.js'],
+		plugins: [new TsconfigPathsPlugin()],
+	},
+	output: {
+		filename: 'bundle.js',
+		path: path.resolve(__dirname, 'build'),
+	},
+	plugins: [new HtmlWebpackPlugin()],
+};
