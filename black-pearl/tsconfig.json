@@ -8,9 +8,8 @@
         "moduleResolution": "node",
         "baseUrl": "./src",
         "paths": {
-            "~assets/*": ["../assets/*"],
-            "~types/*": ["./types/*"],
-            "~utilities/*": ["./utilities/*"]
+            "~assets/*": ["../fair-wind/*"],
+            "~shared/*": ["../ambrose-light/*"]
         }
     }
 }
