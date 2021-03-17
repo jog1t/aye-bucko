@@ -14,3 +14,17 @@ export const TILE_SETS = {
 export const TILE_MAPS = {
 	sample: "TILE_MAPS/sample",
 };
+
+export const ATLASES = {
+	characters: {
+		captain: "ATLASES/characters/captain",
+	},
+};
+
+export const ANIMATIONS = {
+	characters: {
+		captain: {
+			idle: "ANIMATIONS/characters/captain/idle",
+		},
+	},
+};

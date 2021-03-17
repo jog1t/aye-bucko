@@ -1,22 +1,28 @@
 import { Scene } from "phaser";
 import * as constants from "../constants";
 import { isDev } from "~shared";
+import Player from "../objects/Player";
 
 export default class SampleScene extends Scene {
 	private map: Phaser.Tilemaps.Tilemap;
+
+	private player: Player;
 
 	constructor() {
 		super(constants.SCENES.sample);
 	}
 
 	create(): void {
-		this.createTileMap();
+		const { terrain } = this.createTileMap();
+		this.player = new Player(this, 300, 300);
+		this.add.existing(this.player);
+		this.physics.add.collider(terrain, this.player);
+		this.cameras.main.zoomTo(2, 500, Phaser.Math.Easing.Cubic.InOut);
+		this.cameras.main.startFollow(this.player);
 	}
 
-	private createTileMap(): void {
+	private createTileMap(): { terrain: Phaser.Tilemaps.TilemapLayer } {
 		this.cameras.main.setBackgroundColor("#33333e");
-		this.cameras.main.zoomTo(2, 500, Phaser.Math.Easing.Cubic.InOut);
-		this.cameras.main.pan(300, 300, 500, Phaser.Math.Easing.Cubic.InOut);
 		this.map = this.make.tilemap({
 			key: constants.TILE_MAPS.sample,
 		});
@@ -47,5 +53,12 @@ export default class SampleScene extends Scene {
 				faceColor: new Phaser.Display.Color(40, 39, 37, 255),
 			});
 		}
+
+		return { terrain };
+	}
+
+	update(time: number, delta: number) {
+		super.update(time, delta);
+		this.player.update(time, delta);
 	}
 }
