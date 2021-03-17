@@ -1,4 +1,5 @@
 import Game from "./Game";
+import "~shared/types/assets";
 
 window.addEventListener("load", () => {
 	const style = window.document.createElement("style");
