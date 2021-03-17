@@ -4,6 +4,8 @@ import islandBackgroundUrl from "~assets/tilesets/island-background.png";
 import islandDetailsUrl from "~assets/tilesets/island-details.png";
 import islandTerrainUrl from "~assets/tilesets/island-terrain.png";
 import sampleTileMapUrl from "~assets/tilemaps/sample.json";
+import captainAtlasJsonUrl from "~assets/characters/captain/captain.json";
+import captainAtlasTextureUrl from "~assets/characters/captain/captain.png";
 
 import * as constants from "../constants";
 
@@ -18,6 +20,12 @@ export default class Bootstrap extends Scene {
 		this.load.image(constants.TILE_SETS.island.terrain, islandTerrainUrl);
 		this.load.tilemapTiledJSON(constants.TILE_MAPS.sample, sampleTileMapUrl);
 
+		this.load.atlas(
+			constants.ATLASES.characters.captain,
+			captainAtlasTextureUrl,
+			captainAtlasJsonUrl
+		);
+
 		this.load.on(Phaser.Loader.Events.PROGRESS, this.onLoadProgress, this);
 		this.load.on(Phaser.Loader.Events.COMPLETE, this.onLoadComplete, this);
 	}
@@ -25,6 +33,18 @@ export default class Bootstrap extends Scene {
 	destroy(): void {
 		this.load.off(Phaser.Loader.Events.PROGRESS, this.onLoadProgress, this);
 		this.load.off(Phaser.Loader.Events.COMPLETE, this.onLoadComplete, this);
+	}
+
+	create() {
+		this.anims.create({
+			key: constants.ANIMATIONS.characters.captain.idle,
+			frames: this.anims.generateFrameNames(
+				constants.ATLASES.characters.captain,
+				{ prefix: "Idle ", start: 1, end: 5, zeroPad: 2 }
+			),
+			frameRate: 10,
+			repeat: -1,
+		});
 	}
 
 	// TODO(jog1t)
