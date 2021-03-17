@@ -22,12 +22,7 @@
 		"no-use-before-define": "off",
 		"@typescript-eslint/no-use-before-define": ["error"],
 		"import/extensions": ["error", "never"],
-		"max-len": [
-			"warn",
-			{
-				"code": 80
-			}
-		],
+		"max-len": "off",
 		"import/prefer-default-export": "off"
 	},
 	"settings": {
