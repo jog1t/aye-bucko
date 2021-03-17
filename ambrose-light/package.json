@@ -1,0 +1,15 @@
+{
+  "name": "@jog1t/ambrose-light",
+  "version": "1.0.0",
+  "main": "index.html",
+  "author": "Kacper Wojciechowski",
+  "license": "ISC",
+  "private": true,
+  "scripts": {
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.35"
+  }
+}

@@ -1,12 +1,13 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
-	mode: 'development',
-	entry: './src/index.ts',
+	mode: "development",
+	entry: "./src/index.ts",
 	devServer: {
-		contentBase: path.join(__dirname, 'build'),
+		contentBase: path.join(__dirname, "build"),
 		port: 9000,
 	},
 	module: {
@@ -14,7 +15,7 @@ module.exports = {
 			{
 				test: /\.tsx?$/,
 				use: {
-					loader: 'ts-loader',
+					loader: "ts-loader",
 					options: {
 						transpileOnly: true,
 					},
@@ -23,17 +24,17 @@ module.exports = {
 			},
 			{
 				test: /\.(png|css|json)$/i,
-				type: 'asset/resource'
-			}
+				type: "asset/resource",
+			},
 		],
 	},
 	resolve: {
-		extensions: ['.tsx', '.ts', '.js'],
+		extensions: [".tsx", ".ts", ".js"],
 		plugins: [new TsconfigPathsPlugin()],
 	},
 	output: {
-		filename: 'bundle.js',
-		path: path.resolve(__dirname, 'build'),
+		filename: "bundle.js",
+		path: path.resolve(__dirname, "build"),
 	},
 	plugins: [new HtmlWebpackPlugin()],
 };
