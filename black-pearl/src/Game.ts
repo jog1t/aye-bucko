@@ -1,5 +1,7 @@
 import * as Phaser from "phaser";
 import { isDev } from "~shared";
+import Bootstrap from "./scenes/BootstrapScene";
+import SampleScene from "./scenes/SampleScene";
 
 export default class Game extends Phaser.Game {
 	constructor() {
@@ -17,7 +19,7 @@ export default class Game extends Phaser.Game {
 				},
 			},
 			render: { pixelArt: true, antialias: false },
-			scene: [],
+			scene: [Bootstrap, SampleScene],
 		});
 	}
 }
