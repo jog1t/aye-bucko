@@ -7,6 +7,9 @@ import sampleTileMapUrl from "~assets/tilemaps/sample.json";
 import captainAtlasJsonUrl from "~assets/characters/captain/captain.json";
 import captainAtlasTextureUrl from "~assets/characters/captain/captain.png";
 
+import mobileControlsTextureUrl from "~assets/interface-elements/mobile-controls/controls.png";
+import mobileControlsJsonUrl from "~assets/interface-elements/mobile-controls/controls.json";
+
 import * as constants from "../constants";
 
 export default class Bootstrap extends Scene {
@@ -24,6 +27,13 @@ export default class Bootstrap extends Scene {
 			constants.ATLASES.characters.captain,
 			captainAtlasTextureUrl,
 			captainAtlasJsonUrl
+		);
+
+		// interface
+		this.load.atlas(
+			constants.ATLASES.controls.mobile,
+			mobileControlsTextureUrl,
+			mobileControlsJsonUrl
 		);
 
 		this.load.on(Phaser.Loader.Events.PROGRESS, this.onLoadProgress, this);
@@ -81,6 +91,6 @@ export default class Bootstrap extends Scene {
 	/* eslint-enable */
 
 	private onLoadComplete() {
-		this.scene.run(constants.SCENES.sample);
+		this.scene.start(constants.SCENES.sample);
 	}
 }

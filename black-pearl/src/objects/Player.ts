@@ -1,4 +1,5 @@
 import * as constants from "../constants";
+import { GlobalState } from "../utilities";
 import Vector2 = Phaser.Math.Vector2;
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
@@ -28,15 +29,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		const movement = new Vector2(0, 0);
 
 		// run right
-		if (this.inputKeys.D.isDown) {
+		if (this.inputKeys.D.isDown || GlobalState.touchControls.isHeldRight) {
 			movement.x = this.MOVEMENT_SPEED;
 		}
 		// run left
-		if (this.inputKeys.A.isDown) {
+		if (this.inputKeys.A.isDown || GlobalState.touchControls.isHeldLeft) {
 			movement.x = -this.MOVEMENT_SPEED;
 		}
 		// jump
-		if (this.inputKeys.W.isDown && this.body.blocked.down) {
+		if (
+			(this.inputKeys.W.isDown || GlobalState.touchControls.isHelpUp) &&
+			this.body.blocked.down
+		) {
 			movement.y = -200;
 		}
 

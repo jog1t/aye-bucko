@@ -1,6 +1,7 @@
 export const SCENES = {
 	bootstrap: "SCENES/bootstrap",
 	sample: "SCENES/sample",
+	interface: "SCENES/interface",
 };
 
 export const TILE_SETS = {
@@ -18,6 +19,9 @@ export const TILE_MAPS = {
 export const ATLASES = {
 	characters: {
 		captain: "ATLASES/characters/captain",
+	},
+	controls: {
+		mobile: "ATLASES/controls/mobile",
 	},
 };
 

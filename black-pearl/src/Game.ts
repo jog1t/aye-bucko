@@ -2,6 +2,7 @@ import * as Phaser from "phaser";
 import { isDev } from "~shared";
 import Bootstrap from "./scenes/BootstrapScene";
 import SampleScene from "./scenes/SampleScene";
+import InterfaceScene from "./scenes/InterfaceScene";
 
 export default class Game extends Phaser.Game {
 	constructor() {
@@ -20,7 +21,7 @@ export default class Game extends Phaser.Game {
 				},
 			},
 			render: { pixelArt: true, antialias: false },
-			scene: [Bootstrap, SampleScene],
+			scene: [Bootstrap, SampleScene, InterfaceScene],
 		});
 	}
 }
