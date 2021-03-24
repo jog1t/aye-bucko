@@ -35,7 +35,7 @@ export default class Bootstrap extends Scene {
 		this.load.off(Phaser.Loader.Events.COMPLETE, this.onLoadComplete, this);
 	}
 
-	create() {
+	create(): void {
 		this.anims.create({
 			key: constants.ANIMATIONS.characters.captain.idle,
 			frames: this.anims.generateFrameNames(
@@ -44,6 +44,32 @@ export default class Bootstrap extends Scene {
 			),
 			frameRate: 10,
 			repeat: -1,
+		});
+		this.anims.create({
+			key: constants.ANIMATIONS.characters.captain.run,
+			frames: this.anims.generateFrameNames(
+				constants.ATLASES.characters.captain,
+				{ prefix: "Run ", start: 1, end: 5, zeroPad: 2 }
+			),
+			frameRate: 10,
+			repeat: -1,
+		});
+		this.anims.create({
+			key: constants.ANIMATIONS.characters.captain.fall,
+			frames: this.anims.generateFrameNames(
+				constants.ATLASES.characters.captain,
+				{ prefix: "Fall ", start: 1, end: 1, zeroPad: 2 }
+			),
+			frameRate: 10,
+			repeat: -1,
+		});
+		this.anims.create({
+			key: constants.ANIMATIONS.characters.captain.jump,
+			frames: this.anims.generateFrameNames(
+				constants.ATLASES.characters.captain,
+				{ prefix: "Jump ", start: 1, end: 3, zeroPad: 2 }
+			),
+			frameRate: 10,
 		});
 	}
 

@@ -4,8 +4,8 @@
 			"image": "captain",
 			"format": "RGBA8888",
 			"size": {
-				"w": 112,
-				"h": 307
+				"w": 118,
+				"h": 276
 			},
 			"scale": 1,
 			"frames": [
@@ -73,45 +73,24 @@
 					}
 				},
 				{
-					"filename": "Dead Hit 03",
-					"rotated": true,
+					"filename": "Fall 01",
+					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
 						"w": 64,
 						"h": 40
 					},
 					"spriteSourceSize": {
-						"x": 17,
-						"y": 9,
-						"w": 29,
-						"h": 21
+						"x": 19,
+						"y": 3,
+						"w": 25,
+						"h": 28
 					},
 					"frame": {
 						"x": 21,
 						"y": 31,
-						"w": 29,
-						"h": 21
-					}
-				},
-				{
-					"filename": "Dead Ground 01",
-					"rotated": true,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 17,
-						"y": 16,
-						"w": 29,
-						"h": 18
-					},
-					"frame": {
-						"x": 22,
-						"y": 0,
-						"w": 29,
-						"h": 18
+						"w": 25,
+						"h": 28
 					}
 				},
 				{
@@ -129,7 +108,7 @@
 						"h": 28
 					},
 					"frame": {
-						"x": 40,
+						"x": 22,
 						"y": 0,
 						"w": 24,
 						"h": 28
@@ -150,8 +129,8 @@
 						"h": 28
 					},
 					"frame": {
-						"x": 0,
-						"y": 90,
+						"x": 46,
+						"y": 0,
 						"w": 24,
 						"h": 28
 					}
@@ -172,7 +151,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 118,
+						"y": 90,
 						"w": 24,
 						"h": 28
 					}
@@ -193,7 +172,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 146,
+						"y": 118,
 						"w": 24,
 						"h": 28
 					}
@@ -214,7 +193,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 174,
+						"y": 146,
 						"w": 23,
 						"h": 28
 					}
@@ -235,7 +214,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 202,
+						"y": 174,
 						"w": 23,
 						"h": 28
 					}
@@ -256,7 +235,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 230,
+						"y": 202,
 						"w": 26,
 						"h": 27
 					}
@@ -277,7 +256,7 @@
 					},
 					"frame": {
 						"x": 23,
-						"y": 174,
+						"y": 146,
 						"w": 25,
 						"h": 27
 					}
@@ -298,7 +277,7 @@
 					},
 					"frame": {
 						"x": 23,
-						"y": 201,
+						"y": 173,
 						"w": 24,
 						"h": 27
 					}
@@ -319,7 +298,7 @@
 					},
 					"frame": {
 						"x": 24,
-						"y": 60,
+						"y": 59,
 						"w": 24,
 						"h": 27
 					}
@@ -339,94 +318,10 @@
 						"h": 27
 					},
 					"frame": {
-						"x": 42,
+						"x": 46,
 						"y": 28,
 						"w": 24,
 						"h": 27
-					}
-				},
-				{
-					"filename": "Dead Hit 01",
-					"rotated": true,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 8,
-						"w": 27,
-						"h": 23
-					},
-					"frame": {
-						"x": 64,
-						"y": 0,
-						"w": 27,
-						"h": 23
-					}
-				},
-				{
-					"filename": "Dead Hit 04",
-					"rotated": true,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 8,
-						"w": 27,
-						"h": 23
-					},
-					"frame": {
-						"x": 24,
-						"y": 87,
-						"w": 27,
-						"h": 23
-					}
-				},
-				{
-					"filename": "Dead Ground 03",
-					"rotated": true,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 13,
-						"w": 27,
-						"h": 21
-					},
-					"frame": {
-						"x": 24,
-						"y": 114,
-						"w": 27,
-						"h": 21
-					}
-				},
-				{
-					"filename": "Dead Ground 04",
-					"rotated": true,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 14,
-						"w": 27,
-						"h": 20
-					},
-					"frame": {
-						"x": 24,
-						"y": 141,
-						"w": 27,
-						"h": 20
 					}
 				},
 				{
@@ -444,56 +339,14 @@
 						"h": 26
 					},
 					"frame": {
-						"x": 44,
-						"y": 141,
+						"x": 24,
+						"y": 86,
 						"w": 25,
 						"h": 26
 					}
 				},
 				{
 					"filename": "Idle 04",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 20,
-						"y": 6,
-						"w": 24,
-						"h": 26
-					},
-					"frame": {
-						"x": 45,
-						"y": 114,
-						"w": 24,
-						"h": 26
-					}
-				},
-				{
-					"filename": "Run 03",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 20,
-						"y": 6,
-						"w": 24,
-						"h": 26
-					},
-					"frame": {
-						"x": 47,
-						"y": 87,
-						"w": 24,
-						"h": 26
-					}
-				},
-				{
-					"filename": "Run 06",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -514,24 +367,45 @@
 					}
 				},
 				{
-					"filename": "Ground 01",
-					"rotated": true,
+					"filename": "Run 03",
+					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
 						"w": 64,
 						"h": 40
 					},
 					"spriteSourceSize": {
-						"x": 19,
-						"y": 9,
-						"w": 26,
-						"h": 23
+						"x": 20,
+						"y": 6,
+						"w": 24,
+						"h": 26
 					},
 					"frame": {
-						"x": 71,
-						"y": 27,
-						"w": 26,
-						"h": 23
+						"x": 24,
+						"y": 112,
+						"w": 24,
+						"h": 26
+					}
+				},
+				{
+					"filename": "Run 06",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 20,
+						"y": 6,
+						"w": 24,
+						"h": 26
+					},
+					"frame": {
+						"x": 70,
+						"y": 0,
+						"w": 24,
+						"h": 26
 					}
 				},
 				{
@@ -549,31 +423,10 @@
 						"h": 25
 					},
 					"frame": {
-						"x": 87,
-						"y": 0,
+						"x": 70,
+						"y": 26,
 						"w": 25,
 						"h": 25
-					}
-				},
-				{
-					"filename": "Dead Ground 02",
-					"rotated": true,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 40
-					},
-					"spriteSourceSize": {
-						"x": 19,
-						"y": 10,
-						"w": 25,
-						"h": 24
-					},
-					"frame": {
-						"x": 0,
-						"y": 257,
-						"w": 25,
-						"h": 24
 					}
 				},
 				{
@@ -591,10 +444,178 @@
 						"h": 25
 					},
 					"frame": {
-						"x": 0,
-						"y": 282,
+						"x": 94,
+						"y": 0,
 						"w": 24,
 						"h": 25
+					}
+				},
+				{
+					"filename": "Dead Ground 02",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 19,
+						"y": 10,
+						"w": 25,
+						"h": 24
+					},
+					"frame": {
+						"x": 0,
+						"y": 229,
+						"w": 25,
+						"h": 24
+					}
+				},
+				{
+					"filename": "Dead Hit 01",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 8,
+						"w": 27,
+						"h": 23
+					},
+					"frame": {
+						"x": 0,
+						"y": 253,
+						"w": 27,
+						"h": 23
+					}
+				},
+				{
+					"filename": "Dead Hit 04",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 8,
+						"w": 27,
+						"h": 23
+					},
+					"frame": {
+						"x": 25,
+						"y": 229,
+						"w": 27,
+						"h": 23
+					}
+				},
+				{
+					"filename": "Ground 01",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 19,
+						"y": 9,
+						"w": 26,
+						"h": 23
+					},
+					"frame": {
+						"x": 26,
+						"y": 200,
+						"w": 26,
+						"h": 23
+					}
+				},
+				{
+					"filename": "Dead Hit 03",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 17,
+						"y": 9,
+						"w": 29,
+						"h": 21
+					},
+					"frame": {
+						"x": 47,
+						"y": 173,
+						"w": 29,
+						"h": 21
+					}
+				},
+				{
+					"filename": "Dead Ground 03",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 13,
+						"w": 27,
+						"h": 21
+					},
+					"frame": {
+						"x": 52,
+						"y": 194,
+						"w": 27,
+						"h": 21
+					}
+				},
+				{
+					"filename": "Dead Ground 04",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 14,
+						"w": 27,
+						"h": 20
+					},
+					"frame": {
+						"x": 79,
+						"y": 194,
+						"w": 27,
+						"h": 20
+					}
+				},
+				{
+					"filename": "Dead Ground 01",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 17,
+						"y": 16,
+						"w": 29,
+						"h": 18
+					},
+					"frame": {
+						"x": 48,
+						"y": 112,
+						"w": 29,
+						"h": 18
 					}
 				}
 			]

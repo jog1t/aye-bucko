@@ -25,6 +25,16 @@ export const ANIMATIONS = {
 	characters: {
 		captain: {
 			idle: "ANIMATIONS/characters/captain/idle",
+			run: "ANIMATIONS/characters/captain/run",
+			fall: "ANIMATIONS/characters/captain/fall",
+			jump: "ANIMATIONS/characters/captain/jump",
 		},
 	},
+};
+
+export const DEPTHS = {
+	background: 1,
+	player: 2,
+	decorations: 3,
+	debug: 999,
 };
