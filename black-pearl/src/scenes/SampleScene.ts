@@ -15,6 +15,7 @@ export default class SampleScene extends Scene {
 	create(): void {
 		const { terrain } = this.createTileMap();
 		this.player = new Player(this, 300, 300);
+		this.player.setDepth(constants.DEPTHS.player);
 		this.add.existing(this.player);
 		this.physics.add.collider(terrain, this.player);
 		this.cameras.main.zoomTo(2, 500, Phaser.Math.Easing.Cubic.InOut);
@@ -42,11 +43,15 @@ export default class SampleScene extends Scene {
 		this.map.createLayer("Background", backgroundTileset);
 		this.map.createLayer("Grass", detailsTileset);
 		const terrain = this.map.createLayer("Terrain", terrainTileset);
-		this.map.createLayer("Palms", detailsTileset);
+		const palms = this.map.createLayer("Palms", detailsTileset);
+		palms.setDepth(constants.DEPTHS.decorations);
 
 		terrain.setCollisionByProperty({ collides: true });
 		if (isDev()) {
-			const graphics = this.add.graphics().setAlpha(0.75);
+			const graphics = this.add
+				.graphics()
+				.setAlpha(0.75)
+				.setDepth(constants.DEPTHS.debug);
 			terrain.renderDebug(graphics, {
 				tileColor: null,
 				collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255),
@@ -57,7 +62,7 @@ export default class SampleScene extends Scene {
 		return { terrain };
 	}
 
-	update(time: number, delta: number) {
+	update(time: number, delta: number): void {
 		super.update(time, delta);
 		this.player.update(time, delta);
 	}
