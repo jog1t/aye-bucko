@@ -20,6 +20,8 @@ export default class SampleScene extends Scene {
 		this.physics.add.collider(terrain, this.player);
 		this.cameras.main.zoomTo(2, 500, Phaser.Math.Easing.Cubic.InOut);
 		this.cameras.main.startFollow(this.player);
+
+		this.scene.run(constants.SCENES.interface);
 	}
 
 	private createTileMap(): { terrain: Phaser.Tilemaps.TilemapLayer } {
