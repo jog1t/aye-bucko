@@ -1,5 +1,5 @@
-import * as constants from "../constants";
-import { GlobalState } from "../utilities";
+import * as constants from "~constants";
+import { GlobalState } from "~utilities";
 import Vector2 = Phaser.Math.Vector2;
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
@@ -12,6 +12,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene: Phaser.Scene, x: number, y: number) {
 		super(scene, x, y, constants.ATLASES.characters.captain);
 		scene.physics.add.existing(this);
+		scene.add.existing(this);
 		this.play(constants.ANIMATIONS.characters.captain.idle);
 		this.body.setSize(16, 8);
 		this.body.setOffset(24, 24);

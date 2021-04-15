@@ -1,0 +1,355 @@
+{
+	"textures": [
+		{
+			"image": "palms.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 64,
+				"h": 808
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Back Palm Tree Regular 01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					}
+				},
+				{
+					"filename": "Back Palm Tree Regular 02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 0,
+						"y": 64,
+						"w": 64,
+						"h": 64
+					}
+				},
+				{
+					"filename": "Back Palm Tree Regular 03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 0,
+						"y": 128,
+						"w": 64,
+						"h": 64
+					}
+				},
+				{
+					"filename": "Back Palm Tree Regular 04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 0,
+						"y": 192,
+						"w": 64,
+						"h": 64
+					}
+				},
+				{
+					"filename": "Back Palm Tree Right 01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 53
+					},
+					"frame": {
+						"x": 0,
+						"y": 256,
+						"w": 52,
+						"h": 53
+					}
+				},
+				{
+					"filename": "Back Palm Tree Right 02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 53
+					},
+					"frame": {
+						"x": 0,
+						"y": 309,
+						"w": 52,
+						"h": 53
+					}
+				},
+				{
+					"filename": "Back Palm Tree Right 03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 53
+					},
+					"frame": {
+						"x": 0,
+						"y": 362,
+						"w": 52,
+						"h": 53
+					}
+				},
+				{
+					"filename": "Back Palm Tree Right 04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 53
+					},
+					"frame": {
+						"x": 0,
+						"y": 415,
+						"w": 52,
+						"h": 53
+					}
+				},
+				{
+					"filename": "Back Palm Tree Left 01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 51,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 51,
+						"h": 53
+					},
+					"frame": {
+						"x": 0,
+						"y": 468,
+						"w": 51,
+						"h": 53
+					}
+				},
+				{
+					"filename": "Back Palm Tree Left 02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 51,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 51,
+						"h": 53
+					},
+					"frame": {
+						"x": 0,
+						"y": 521,
+						"w": 51,
+						"h": 53
+					}
+				},
+				{
+					"filename": "Back Palm Tree Left 03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 51,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 51,
+						"h": 53
+					},
+					"frame": {
+						"x": 0,
+						"y": 574,
+						"w": 51,
+						"h": 53
+					}
+				},
+				{
+					"filename": "Back Palm Tree Left 04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 51,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 51,
+						"h": 53
+					},
+					"frame": {
+						"x": 0,
+						"y": 627,
+						"w": 51,
+						"h": 53
+					}
+				},
+				{
+					"filename": "Front Palm Tree Top 01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 39,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 39,
+						"h": 32
+					},
+					"frame": {
+						"x": 0,
+						"y": 680,
+						"w": 39,
+						"h": 32
+					}
+				},
+				{
+					"filename": "Front Palm Tree Top 02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 39,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 39,
+						"h": 32
+					},
+					"frame": {
+						"x": 0,
+						"y": 712,
+						"w": 39,
+						"h": 32
+					}
+				},
+				{
+					"filename": "Front Palm Tree Top 03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 39,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 39,
+						"h": 32
+					},
+					"frame": {
+						"x": 0,
+						"y": 744,
+						"w": 39,
+						"h": 32
+					}
+				},
+				{
+					"filename": "Front Palm Tree Top 04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 39,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 39,
+						"h": 32
+					},
+					"frame": {
+						"x": 0,
+						"y": 776,
+						"w": 39,
+						"h": 32
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}
