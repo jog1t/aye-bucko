@@ -1,7 +1,8 @@
 import { Scene } from "phaser";
-import * as constants from "../constants";
+import * as constants from "~constants";
 import { isDev } from "~shared";
-import Player from "../objects/Player";
+import Player from "~objects/Player";
+import ForegroundPalm from "~objects/decorations/ForegroundPalm";
 
 export default class SampleScene extends Scene {
 	private map: Phaser.Tilemaps.Tilemap;
@@ -13,10 +14,10 @@ export default class SampleScene extends Scene {
 	}
 
 	create(): void {
-		const { terrain } = this.createTileMap();
 		this.player = new Player(this, 300, 300);
 		this.player.setDepth(constants.DEPTHS.player);
-		this.add.existing(this.player);
+
+		const { terrain } = this.createTileMap();
 		this.physics.add.collider(terrain, this.player);
 		this.cameras.main.zoomTo(2, 500, Phaser.Math.Easing.Cubic.InOut);
 		this.cameras.main.startFollow(this.player);
@@ -60,6 +61,16 @@ export default class SampleScene extends Scene {
 				faceColor: new Phaser.Display.Color(40, 39, 37, 255),
 			});
 		}
+
+		this.map.getObjectLayer("Animated").objects.forEach((object) => {
+			if (object.type === "palm") {
+				const sprite = new ForegroundPalm(this, object.x, object.y);
+				sprite.setDepth(100);
+				sprite.x += sprite.width / 2 - 5;
+				sprite.y -= sprite.height / 2;
+				this.physics.add.collider(sprite, this.player);
+			}
+		});
 
 		return { terrain };
 	}

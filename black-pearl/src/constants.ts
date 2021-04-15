@@ -23,6 +23,9 @@ export const ATLASES = {
 	controls: {
 		mobile: "ATLASES/controls/mobile",
 	},
+	objects: {
+		palms: "ATLASES/objects/palms",
+	},
 };
 
 export const ANIMATIONS = {
@@ -33,6 +36,9 @@ export const ANIMATIONS = {
 			fall: "ANIMATIONS/characters/captain/fall",
 			jump: "ANIMATIONS/characters/captain/jump",
 		},
+	},
+	objects: {
+		foregroundPalm: "ANIMATIONS/objects/foregroundPalm",
 	},
 };
 
