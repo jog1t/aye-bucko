@@ -39,12 +39,14 @@ export const ANIMATIONS = {
 	},
 	objects: {
 		foregroundPalm: "ANIMATIONS/objects/foregroundPalm",
+		backgroundPalm: "ANIMATIONS/objects/backgroundPalm",
 	},
 };
 
 export const DEPTHS = {
 	background: 1,
 	player: 2,
-	decorations: 3,
+	terrain: 3,
+	decorations: 4,
 	debug: 999,
 };

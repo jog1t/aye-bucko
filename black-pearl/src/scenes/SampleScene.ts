@@ -3,6 +3,7 @@ import * as constants from "~constants";
 import { isDev } from "~shared";
 import Player from "~objects/Player";
 import ForegroundPalm from "~objects/decorations/ForegroundPalm";
+import BackgroundPalm from "~objects/decorations/BackgroundPalm";
 
 export default class SampleScene extends Scene {
 	private map: Phaser.Tilemaps.Tilemap;
@@ -46,6 +47,7 @@ export default class SampleScene extends Scene {
 		this.map.createLayer("Background", backgroundTileset);
 		this.map.createLayer("Grass", detailsTileset);
 		const terrain = this.map.createLayer("Terrain", terrainTileset);
+		terrain.setDepth(constants.DEPTHS.terrain);
 		const palms = this.map.createLayer("Palms", detailsTileset);
 		palms.setDepth(constants.DEPTHS.decorations);
 
@@ -65,10 +67,14 @@ export default class SampleScene extends Scene {
 		this.map.getObjectLayer("Animated").objects.forEach((object) => {
 			if (object.type === "palm") {
 				const sprite = new ForegroundPalm(this, object.x, object.y);
-				sprite.setDepth(100);
+				sprite.setDepth(constants.DEPTHS.decorations);
 				sprite.x += sprite.width / 2 - 5;
 				sprite.y -= sprite.height / 2;
 				this.physics.add.collider(sprite, this.player);
+			} else if (object.type === "backgroundPalm") {
+				const sprite = new BackgroundPalm(this, object.x, object.y);
+				sprite.setDepth(constants.DEPTHS.background);
+				sprite.x += sprite.width / 2;
 			}
 		});
 

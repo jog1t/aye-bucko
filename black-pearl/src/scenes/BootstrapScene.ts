@@ -102,6 +102,18 @@ export default class Bootstrap extends Scene {
 			frameRate: 10,
 			repeat: -1,
 		});
+
+		this.anims.create({
+			key: constants.ANIMATIONS.objects.backgroundPalm,
+			frames: this.anims.generateFrameNames(constants.ATLASES.objects.palms, {
+				prefix: "Back Palm Tree Regular ",
+				start: 1,
+				end: 4,
+				zeroPad: 2,
+			}),
+			frameRate: 10,
+			repeat: -1,
+		});
 	}
 
 	// TODO(jog1t)
