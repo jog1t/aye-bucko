@@ -1,5 +1,5 @@
 <p align="center">
-    <img src=".github/logo.png" alt="Aye bucko!"/>
+    <img src=".github/logo.png" width="300" alt="Aye bucko!" style="image-rendering: pixelated;"/>
 </p>
 <h1 align="center">Aye bucko!</h1>
 
