@@ -4,7 +4,7 @@ All new things should happen through Pull Requests. Gameplay decision should hav
 Any suggestions are highly appreciated. 
 
 ## Commits
-This projects is using [conventional commits](https://www.conventionalcommits.org/).
+This project is using [conventional commits](https://www.conventionalcommits.org/).
 
 ## Black pearl - The frontend app
 
