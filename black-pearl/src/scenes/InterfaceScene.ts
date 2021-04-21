@@ -26,13 +26,6 @@ export default class InterfaceScene extends Scene {
 			)
 			.setScale(1.5);
 
-		const interaction = this.add.image(
-			this.cameras.main.width - 300,
-			this.cameras.main.height - 80,
-			constants.ATLASES.controls.mobile,
-			"interaction"
-		);
-
 		const up = this.add
 			.image(
 				this.cameras.main.width - 150,
@@ -51,16 +44,6 @@ export default class InterfaceScene extends Scene {
 		right.setInteractive();
 		right.on(Phaser.Input.Events.POINTER_DOWN, this.onRightButtonPointerDown);
 		right.on(Phaser.Input.Events.POINTER_UP, this.onRightButtonPointerUp);
-
-		// interaction.setInteractive();
-		// interaction.on(
-		// 	Phaser.Input.Events.POINTER_DOWN,
-		// 	this.onInteractionButtonPointerDown
-		// );
-		// interaction.on(
-		// 	Phaser.Input.Events.POINTER_UP,
-		// 	this.onInteractionButtonPointerUp
-		// );
 
 		up.setInteractive();
 		up.on(Phaser.Input.Events.POINTER_DOWN, this.onUpButtonPointerDown);
