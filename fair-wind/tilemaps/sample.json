@@ -167,7 +167,7 @@
         {
          "columns":17,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/..\/..\/Downloads\/Treasure Hunters\/Palm Tree Island\/Sprites\/Terrain\/Terrain (32x32).png",
+         "image":"..\/tilesets\/island-terrain.png",
          "imageheight":160,
          "imagewidth":544,
          "margin":0,
@@ -946,7 +946,7 @@
         {
          "columns":12,
          "firstgid":86,
-         "image":"..\/..\/..\/..\/..\/..\/Downloads\/Treasure Hunters\/Palm Tree Island\/Sprites\/Background\/BG Image.png",
+         "image":"..\/tilesets\/island-background.png",
          "imageheight":128,
          "imagewidth":384,
          "margin":0,
@@ -959,7 +959,7 @@
         {
          "columns":3,
          "firstgid":134,
-         "image":"..\/..\/..\/..\/..\/..\/Downloads\/Treasure Hunters\/Palm Tree Island\/Sprites\/Front Palm Trees\/Front Palm Bottom and Grass (32x32).png",
+         "image":"..\/tilesets\/island-details.png",
          "imageheight":96,
          "imagewidth":96,
          "margin":0,
@@ -972,7 +972,7 @@
         {
          "columns":10,
          "firstgid":143,
-         "image":"..\/..\/..\/aye-bucko-source-images\/animated\/animated.png",
+         "image":"..\/..\/hai-peng\/_helpers\/animated.png",
          "imageheight":320,
          "imagewidth":320,
          "margin":0,
