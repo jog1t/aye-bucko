@@ -1,0 +1,4 @@
+{
+    "private": true,
+    "workspaces": ["ambrose-light", "black-pearl", "fair-wind", "whydah"]
+}
