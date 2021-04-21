@@ -1,6 +1,6 @@
 # Contributing to Aye Bucko!
 
-All new things should happen through Pull Requests. Gameplay decision should have corresponding issue.
+All new things should happen through Pull Requests. Gameplay decision should have corresponding issue or/and a [discussion thread](https://github.com/jog1t/aye-bucko/discussions/categories/gameplay-ideas).
 Any suggestions are highly appreciated. 
 
 ## Commits
