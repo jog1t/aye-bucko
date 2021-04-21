@@ -32,3 +32,6 @@ Simple and fun 2D platformer, where you and your friends go through various maps
 ### Contributing
 
 More information about how to contribute can be found [here](https://github.com/jog1t/aye-bucko/blob/master/CONTRIBUTING.md). All suggestions, ideas and bug reports are highly appreciated.
+
+---
+<small>Any questions or suggestions? Head over to the [discussions tab](https://github.com/jog1t/aye-bucko/discussions)! </small>
