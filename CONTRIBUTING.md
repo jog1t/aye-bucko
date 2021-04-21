@@ -56,3 +56,6 @@ Drag all source images from a specific folder and drop them into TexturePacker t
 3. Create animations
 4. Add the file to the `index.ts`.
 5. 🎉 Tada! Now, you can use your brand-new animation.
+
+---
+<small>Any questions or suggestions? Head over to the [discussions tab](https://github.com/jog1t/aye-bucko/discussions)! </small>
