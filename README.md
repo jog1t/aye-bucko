@@ -4,6 +4,8 @@
 <h1 align="center">Aye bucko!</h1>
 
 <h3 align="center">
+  <a href="https://aye-bucko.vercel.app/">Play</a>
+  <span> · </span>
   <a href="CONTRIBUTING.md">Contribute</a>
   <span> · </span>
   <a href="https://github.com/jog1t/aye-bucko/projects/1">Current status</a>
