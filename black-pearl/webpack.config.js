@@ -37,5 +37,5 @@ module.exports = {
 		filename: "bundle.js",
 		path: path.resolve(__dirname, "build"),
 	},
-	plugins: [new HtmlWebpackPlugin()],
+	plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
 };
