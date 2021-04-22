@@ -1,79 +1,57 @@
-import { Scene } from "phaser";
-import * as constants from "../constants";
-import { GlobalState } from "../utilities";
+import { Scene, Textures, GameObjects } from "phaser";
+import * as constants from "~constants";
 
 export default class InterfaceScene extends Scene {
+	private up: GameObjects.Image;
+
 	constructor() {
 		super(constants.SCENES.interface);
 	}
 
 	create(): void {
-		const left = this.add
-			.image(
-				150,
-				this.cameras.main.height - 100,
-				constants.ATLASES.controls.mobile,
-				"left"
-			)
+		if (!this.game.device.input.touch) {
+			this.input.addPointer(1);
+			// TODO(jog1t): remove listeners on destroy
+			this.initOnScreenControls();
+		}
+	}
+
+	private initOnScreenControls() {
+		this.initOnScreenTouchElement(
+			this.textures.getFrame(constants.ATLASES.controls.mobile, "left"),
+			{ x: 150, y: this.cameras.main.height }
+		);
+
+		this.initOnScreenTouchElement(
+			this.textures.getFrame(constants.ATLASES.controls.mobile, "right"),
+			{ x: 300, y: this.cameras.main.height }
+		);
+
+		this.initOnScreenTouchElement(
+			this.textures.getFrame(constants.ATLASES.controls.mobile, "up"),
+			{ x: this.cameras.main.width, y: this.cameras.main.height }
+		);
+	}
+
+	private initOnScreenTouchElement(
+		frame: Textures.Frame,
+		position: { x: number; y: number }
+	) {
+		const element = this.add
+			.image(position.x, position.y, frame.texture, frame.name)
 			.setScale(1.5);
 
-		const right = this.add
-			.image(
-				300,
-				this.cameras.main.height - 100,
-				constants.ATLASES.controls.mobile,
-				"right"
-			)
-			.setScale(1.5);
-
-		const up = this.add
-			.image(
-				this.cameras.main.width - 150,
-				this.cameras.main.height - 100,
-				constants.ATLASES.controls.mobile,
-				"up"
-			)
-			.setScale(1.5);
-
-		this.input.addPointer(1);
-
-		left.setInteractive();
-		left.on(Phaser.Input.Events.POINTER_DOWN, this.onLeftButtonPointerDown);
-		left.on(Phaser.Input.Events.POINTER_UP, this.onLeftButtonPointerUp);
-
-		right.setInteractive();
-		right.on(Phaser.Input.Events.POINTER_DOWN, this.onRightButtonPointerDown);
-		right.on(Phaser.Input.Events.POINTER_UP, this.onRightButtonPointerUp);
-
-		up.setInteractive();
-		up.on(Phaser.Input.Events.POINTER_DOWN, this.onUpButtonPointerDown);
-		up.on(Phaser.Input.Events.POINTER_UP, this.onUpButtonPointerUp);
-	}
-
-	// left
-	private onLeftButtonPointerDown() {
-		GlobalState.touchControls.isHeldLeft = true;
-	}
-
-	private onLeftButtonPointerUp() {
-		GlobalState.touchControls.isHeldLeft = false;
-	}
-
-	// right
-	private onRightButtonPointerDown() {
-		GlobalState.touchControls.isHeldRight = true;
-	}
-
-	private onRightButtonPointerUp() {
-		GlobalState.touchControls.isHeldRight = false;
-	}
-
-	// up
-	private onUpButtonPointerDown() {
-		GlobalState.touchControls.isHelpUp = true;
-	}
-
-	private onUpButtonPointerUp() {
-		GlobalState.touchControls.isHelpUp = false;
+		element.x -= element.width;
+		element.y -= element.height;
+		element.setInteractive();
+		element.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+			this.events.emit("controlDown", element);
+		});
+		element.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+			this.events.emit("controlUp", element);
+		});
+		element.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+			this.events.emit("controlUp", element);
+		});
 	}
 }
