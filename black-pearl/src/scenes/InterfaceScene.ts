@@ -16,7 +16,7 @@ export default class InterfaceScene extends Scene {
 	}
 
 	create(): void {
-		if (this.game.device.input.touch) {
+		if (!this.game.device.input.touch) {
 			this.input.addPointer(1);
 			// TODO(jog1t): remove listeners on destroy
 			this.initOnScreenControls();
@@ -58,13 +58,24 @@ export default class InterfaceScene extends Scene {
 		element.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
 			this.events.emit(ControlEvents.CONTROL_DOWN, controlName);
 		});
+		element.on(
+			Phaser.Input.Events.GAMEOBJECT_POINTER_OVER,
+			(event: Phaser.Input.Pointer) => {
+				if (event.isDown) {
+					this.events.emit(ControlEvents.CONTROL_DOWN, controlName);
+				}
+			}
+		);
 		element.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
 			this.events.emit(ControlEvents.CONTROL_UP, controlName);
 		});
-		element.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, (event) => {
-			if (event.isDown) {
-				this.events.emit(ControlEvents.CONTROL_UP, controlName);
+		element.on(
+			Phaser.Input.Events.GAMEOBJECT_POINTER_OUT,
+			(event: Phaser.Input.Pointer) => {
+				if (event.isDown) {
+					this.events.emit(ControlEvents.CONTROL_UP, controlName);
+				}
 			}
-		});
+		);
 	}
 }
