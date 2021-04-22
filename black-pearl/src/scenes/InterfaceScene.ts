@@ -16,7 +16,7 @@ export default class InterfaceScene extends Scene {
 	}
 
 	create(): void {
-		if (!this.game.device.input.touch) {
+		if (this.game.device.input.touch) {
 			this.input.addPointer(1);
 			// TODO(jog1t): remove listeners on destroy
 			this.initOnScreenControls();
