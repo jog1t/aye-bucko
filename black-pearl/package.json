@@ -6,7 +6,8 @@
 	"license": "ISC",
 	"private": true,
 	"scripts": {
-		"dev": "webpack serve"
+		"dev": "webpack serve",
+		"build": "webpack --mode=production"
 	},
 	"husky": {
 		"hooks": {
