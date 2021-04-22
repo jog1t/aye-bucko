@@ -1,8 +1,15 @@
 import { Scene, Textures, GameObjects } from "phaser";
 import * as constants from "~constants";
 
+enum ControlEvents {
+	CONTROL_DOWN = "control-down",
+	CONTROL_UP = "control-up",
+}
+
 export default class InterfaceScene extends Scene {
 	private up: GameObjects.Image;
+
+	static EVENTS = ControlEvents;
 
 	constructor() {
 		super(constants.SCENES.interface);
@@ -19,23 +26,27 @@ export default class InterfaceScene extends Scene {
 	private initOnScreenControls() {
 		this.initOnScreenTouchElement(
 			this.textures.getFrame(constants.ATLASES.controls.mobile, "left"),
-			{ x: 150, y: this.cameras.main.height }
+			{ x: 150, y: this.cameras.main.height },
+			"left"
 		);
 
 		this.initOnScreenTouchElement(
 			this.textures.getFrame(constants.ATLASES.controls.mobile, "right"),
-			{ x: 300, y: this.cameras.main.height }
+			{ x: 300, y: this.cameras.main.height },
+			"right"
 		);
 
 		this.initOnScreenTouchElement(
 			this.textures.getFrame(constants.ATLASES.controls.mobile, "up"),
-			{ x: this.cameras.main.width, y: this.cameras.main.height }
+			{ x: this.cameras.main.width, y: this.cameras.main.height },
+			"up"
 		);
 	}
 
 	private initOnScreenTouchElement(
 		frame: Textures.Frame,
-		position: { x: number; y: number }
+		position: { x: number; y: number },
+		controlName: string
 	) {
 		const element = this.add
 			.image(position.x, position.y, frame.texture, frame.name)
@@ -45,13 +56,15 @@ export default class InterfaceScene extends Scene {
 		element.y -= element.height;
 		element.setInteractive();
 		element.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-			this.events.emit("controlDown", element);
+			this.events.emit(ControlEvents.CONTROL_DOWN, controlName);
 		});
 		element.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-			this.events.emit("controlUp", element);
+			this.events.emit(ControlEvents.CONTROL_UP, controlName);
 		});
-		element.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
-			this.events.emit("controlUp", element);
+		element.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, (event) => {
+			if (event.isDown) {
+				this.events.emit(ControlEvents.CONTROL_UP, controlName);
+			}
 		});
 	}
 }
