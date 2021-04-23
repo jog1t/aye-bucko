@@ -1,79 +1,115 @@
-import { Scene } from "phaser";
-import * as constants from "../constants";
-import { GlobalState } from "../utilities";
+import { Scene, Textures, GameObjects } from "phaser";
+import * as constants from "~constants";
+import { isDev } from "~shared";
+
+enum ControlEvents {
+	CONTROL_DOWN = "control-down",
+	CONTROL_UP = "control-up",
+}
 
 export default class InterfaceScene extends Scene {
+	private up: GameObjects.Image;
+
+	private downPointersControlsMap: Map<number, string> = new Map();
+
+	static EVENTS = ControlEvents;
+
 	constructor() {
 		super(constants.SCENES.interface);
 	}
 
 	create(): void {
-		const left = this.add
-			.image(
-				150,
-				this.cameras.main.height - 100,
-				constants.ATLASES.controls.mobile,
-				"left"
-			)
+		if (this.game.device.input.touch || isDev()) {
+			this.input.addPointer(1);
+			// TODO(jog1t): remove listeners on destroy
+			this.initOnScreenControls();
+		}
+	}
+
+	private initOnScreenControls() {
+		this.initOnScreenTouchElement(
+			this.textures.getFrame(constants.ATLASES.controls.mobile, "left"),
+			{ x: 150, y: this.cameras.main.height },
+			"left"
+		);
+
+		this.initOnScreenTouchElement(
+			this.textures.getFrame(constants.ATLASES.controls.mobile, "right"),
+			{ x: 300, y: this.cameras.main.height },
+			"right"
+		);
+
+		this.initOnScreenTouchElement(
+			this.textures.getFrame(constants.ATLASES.controls.mobile, "up"),
+			{ x: this.cameras.main.width, y: this.cameras.main.height },
+			"up"
+		);
+
+		this.input.on(
+			Phaser.Input.Events.POINTER_UP,
+			(pointer: Phaser.Input.Pointer) => {
+				this.onControlPointerUp(pointer.id);
+			}
+		);
+	}
+
+	private initOnScreenTouchElement(
+		frame: Textures.Frame,
+		position: { x: number; y: number },
+		controlName: string
+	) {
+		const element = this.add
+			.image(position.x, position.y, frame.texture, frame.name)
 			.setScale(1.5);
 
-		const right = this.add
-			.image(
-				300,
-				this.cameras.main.height - 100,
-				constants.ATLASES.controls.mobile,
-				"right"
-			)
-			.setScale(1.5);
+		element.x -= element.width;
+		element.y -= element.height;
+		element.setInteractive();
 
-		const up = this.add
-			.image(
-				this.cameras.main.width - 150,
-				this.cameras.main.height - 100,
-				constants.ATLASES.controls.mobile,
-				"up"
-			)
-			.setScale(1.5);
+		element.on(
+			Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN,
+			(pointer: Phaser.Input.Pointer) => {
+				this.onControlPointerDown(pointer.id, controlName);
+			}
+		);
 
-		this.input.addPointer(1);
+		// When a pointer is down and is moved to other control
+		// we need to switch currently held control
+		element.on(
+			Phaser.Input.Events.GAMEOBJECT_POINTER_OVER,
+			(pointer: Phaser.Input.Pointer) => {
+				if (pointer.isDown) {
+					if (this.isPointerAlreadyHeld(pointer.id)) {
+						this.onControlPointerUp(pointer.id);
+					}
 
-		left.setInteractive();
-		left.on(Phaser.Input.Events.POINTER_DOWN, this.onLeftButtonPointerDown);
-		left.on(Phaser.Input.Events.POINTER_UP, this.onLeftButtonPointerUp);
+					this.onControlPointerDown(pointer.id, controlName);
+				}
+			}
+		);
 
-		right.setInteractive();
-		right.on(Phaser.Input.Events.POINTER_DOWN, this.onRightButtonPointerDown);
-		right.on(Phaser.Input.Events.POINTER_UP, this.onRightButtonPointerUp);
-
-		up.setInteractive();
-		up.on(Phaser.Input.Events.POINTER_DOWN, this.onUpButtonPointerDown);
-		up.on(Phaser.Input.Events.POINTER_UP, this.onUpButtonPointerUp);
+		element.on(
+			Phaser.Input.Events.GAMEOBJECT_POINTER_UP,
+			(pointer: Phaser.Input.Pointer) => {
+				this.onControlPointerUp(pointer.id, controlName);
+			}
+		);
 	}
 
-	// left
-	private onLeftButtonPointerDown() {
-		GlobalState.touchControls.isHeldLeft = true;
+	private onControlPointerUp(
+		pointerId: number,
+		controlName: string = this.downPointersControlsMap.get(pointerId)
+	): void {
+		this.downPointersControlsMap.delete(pointerId);
+		this.events.emit(ControlEvents.CONTROL_UP, controlName);
 	}
 
-	private onLeftButtonPointerUp() {
-		GlobalState.touchControls.isHeldLeft = false;
+	private onControlPointerDown(pointerId: number, controlName: string): void {
+		this.events.emit(ControlEvents.CONTROL_DOWN, controlName);
+		this.downPointersControlsMap.set(pointerId, controlName);
 	}
 
-	// right
-	private onRightButtonPointerDown() {
-		GlobalState.touchControls.isHeldRight = true;
-	}
-
-	private onRightButtonPointerUp() {
-		GlobalState.touchControls.isHeldRight = false;
-	}
-
-	// up
-	private onUpButtonPointerDown() {
-		GlobalState.touchControls.isHelpUp = true;
-	}
-
-	private onUpButtonPointerUp() {
-		GlobalState.touchControls.isHelpUp = false;
+	private isPointerAlreadyHeld(pointerId: number): boolean {
+		return this.downPointersControlsMap.get(pointerId) !== undefined;
 	}
 }
