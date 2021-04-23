@@ -4,8 +4,8 @@
 			"image": "palms.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 64,
-				"h": 808
+				"w": 231,
+				"h": 213
 			},
 			"scale": 1,
 			"frames": [
@@ -45,8 +45,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 0,
-						"y": 64,
+						"x": 64,
+						"y": 0,
 						"w": 64,
 						"h": 64
 					}
@@ -67,7 +67,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 128,
+						"y": 64,
 						"w": 64,
 						"h": 64
 					}
@@ -87,94 +87,10 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 0,
-						"y": 192,
+						"x": 64,
+						"y": 64,
 						"w": 64,
 						"h": 64
-					}
-				},
-				{
-					"filename": "Back Palm Tree Right 01",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 52,
-						"h": 53
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 52,
-						"h": 53
-					},
-					"frame": {
-						"x": 0,
-						"y": 256,
-						"w": 52,
-						"h": 53
-					}
-				},
-				{
-					"filename": "Back Palm Tree Right 02",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 52,
-						"h": 53
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 52,
-						"h": 53
-					},
-					"frame": {
-						"x": 0,
-						"y": 309,
-						"w": 52,
-						"h": 53
-					}
-				},
-				{
-					"filename": "Back Palm Tree Right 03",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 52,
-						"h": 53
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 52,
-						"h": 53
-					},
-					"frame": {
-						"x": 0,
-						"y": 362,
-						"w": 52,
-						"h": 53
-					}
-				},
-				{
-					"filename": "Back Palm Tree Right 04",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 52,
-						"h": 53
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 52,
-						"h": 53
-					},
-					"frame": {
-						"x": 0,
-						"y": 415,
-						"w": 52,
-						"h": 53
 					}
 				},
 				{
@@ -192,8 +108,8 @@
 						"h": 53
 					},
 					"frame": {
-						"x": 0,
-						"y": 468,
+						"x": 128,
+						"y": 0,
 						"w": 51,
 						"h": 53
 					}
@@ -213,8 +129,8 @@
 						"h": 53
 					},
 					"frame": {
-						"x": 0,
-						"y": 521,
+						"x": 128,
+						"y": 53,
 						"w": 51,
 						"h": 53
 					}
@@ -234,8 +150,8 @@
 						"h": 53
 					},
 					"frame": {
-						"x": 0,
-						"y": 574,
+						"x": 128,
+						"y": 106,
 						"w": 51,
 						"h": 53
 					}
@@ -256,8 +172,92 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 627,
+						"y": 128,
 						"w": 51,
+						"h": 53
+					}
+				},
+				{
+					"filename": "Back Palm Tree Right 01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 53
+					},
+					"frame": {
+						"x": 51,
+						"y": 128,
+						"w": 52,
+						"h": 53
+					}
+				},
+				{
+					"filename": "Back Palm Tree Right 02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 53
+					},
+					"frame": {
+						"x": 179,
+						"y": 0,
+						"w": 52,
+						"h": 53
+					}
+				},
+				{
+					"filename": "Back Palm Tree Right 03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 53
+					},
+					"frame": {
+						"x": 179,
+						"y": 53,
+						"w": 52,
+						"h": 53
+					}
+				},
+				{
+					"filename": "Back Palm Tree Right 04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 53
+					},
+					"frame": {
+						"x": 179,
+						"y": 106,
+						"w": 52,
 						"h": 53
 					}
 				},
@@ -277,7 +277,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 680,
+						"y": 181,
 						"w": 39,
 						"h": 32
 					}
@@ -297,8 +297,8 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 0,
-						"y": 712,
+						"x": 39,
+						"y": 181,
 						"w": 39,
 						"h": 32
 					}
@@ -318,8 +318,8 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 0,
-						"y": 744,
+						"x": 78,
+						"y": 181,
 						"w": 39,
 						"h": 32
 					}
@@ -339,8 +339,8 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 0,
-						"y": 776,
+						"x": 117,
+						"y": 159,
 						"w": 39,
 						"h": 32
 					}
