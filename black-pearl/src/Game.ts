@@ -7,9 +7,13 @@ import InterfaceScene from "./scenes/InterfaceScene";
 export default class Game extends Phaser.Game {
 	constructor() {
 		super({
-			width: window.innerWidth,
-			height: window.innerHeight,
 			type: Phaser.AUTO,
+			scale: {
+				parent: "body",
+				mode: Phaser.Scale.ScaleModes.FIT,
+				width: "100%",
+				height: "100%",
+			},
 			input: {
 				keyboard: true,
 			},
