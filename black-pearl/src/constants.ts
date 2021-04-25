@@ -25,6 +25,7 @@ export const ATLASES = {
 	},
 	objects: {
 		palms: "ATLASES/objects/palms",
+		waterReflections: "ATLASES/objects/waterReflections",
 	},
 };
 
@@ -40,6 +41,11 @@ export const ANIMATIONS = {
 	objects: {
 		foregroundPalm: "ANIMATIONS/objects/foregroundPalm",
 		backgroundPalm: "ANIMATIONS/objects/backgroundPalm",
+		waterReflections: {
+			big: "ANIMATIONS/objects/waterReflections/big",
+			medium: "ANIMATIONS/objects/waterReflections/medium",
+			small: "ANIMATIONS/objects/waterReflections/small",
+		},
 	},
 };
 

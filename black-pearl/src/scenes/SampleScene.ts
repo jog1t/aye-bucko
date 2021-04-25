@@ -4,6 +4,7 @@ import { isDev } from "~shared";
 import Player from "~objects/Player";
 import ForegroundPalm from "~objects/decorations/ForegroundPalm";
 import BackgroundPalm from "~objects/decorations/BackgroundPalm";
+import WaterReflection from "~objects/decorations/WaterReflection";
 
 export default class SampleScene extends Scene {
 	private map: Phaser.Tilemaps.Tilemap;
@@ -76,6 +77,9 @@ export default class SampleScene extends Scene {
 				const sprite = new BackgroundPalm(this, object.x, object.y);
 				sprite.setDepth(constants.DEPTHS.background);
 				sprite.x += sprite.width / 2;
+			} else if (object.type === "waterReflectionBig") {
+				const sprite = new WaterReflection(this, "big", object.x, object.y);
+				this.add.existing(sprite);
 			}
 		});
 
