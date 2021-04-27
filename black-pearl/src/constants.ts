@@ -26,6 +26,7 @@ export const ATLASES = {
 	objects: {
 		palms: "ATLASES/objects/palms",
 		waterReflections: "ATLASES/objects/waterReflections",
+		clouds: "ATLASES/objects/clouds",
 	},
 };
 
@@ -50,6 +51,7 @@ export const ANIMATIONS = {
 };
 
 export const DEPTHS = {
+	clouds: 0,
 	background: 1,
 	player: 2,
 	terrain: 3,

@@ -162,18 +162,96 @@
                  "width":32,
                  "x":284,
                  "y":350
+                }, 
+                {
+                 "gid":148,
+                 "height":32,
+                 "id":21,
+                 "name":"",
+                 "rotation":0,
+                 "type":"bigCloud",
+                 "visible":true,
+                 "width":32,
+                 "x":352.122603517709,
+                 "y":292
                 }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":7,
+         "name":"Utilities",
+         "objects":[
+                {
+                 "height":0,
+                 "id":23,
+                 "name":"boundingPolygon",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":-2
+                        }, 
+                        {
+                         "x":0,
+                         "y":94
+                        }, 
+                        {
+                         "x":-64,
+                         "y":94
+                        }, 
+                        {
+                         "x":-64,
+                         "y":254
+                        }, 
+                        {
+                         "x":256,
+                         "y":254
+                        }, 
+                        {
+                         "x":256,
+                         "y":190
+                        }, 
+                        {
+                         "x":384,
+                         "y":190
+                        }, 
+                        {
+                         "x":384,
+                         "y":-2
+                        }],
+                 "rotation":0,
+                 "type":"boundingPolygon",
+                 "visible":true,
+                 "width":0,
+                 "x":160,
+                 "y":162
+                }, 
+                {
+                 "height":256,
+                 "id":24,
+                 "name":"boundingBox",
+                 "rotation":0,
+                 "type":"boundingBox",
+                 "visible":true,
+                 "width":448,
+                 "x":96,
+                 "y":160
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":false,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":7,
- "nextobjectid":21,
+ "nextlayerid":8,
+ "nextobjectid":25,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.5.0",
+ "tiledversion":"1.6.0",
  "tileheight":32,
  "tilesets":[
         {
@@ -996,6 +1074,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.5,
+ "version":"1.6",
  "width":20
 }

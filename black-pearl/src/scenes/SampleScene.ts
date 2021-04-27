@@ -1,13 +1,16 @@
-import { Scene } from "phaser";
+import * as Phaser from "phaser";
 import * as constants from "~constants";
 import { isDev } from "~shared";
 import Player from "~objects/Player";
 import ForegroundPalm from "~objects/decorations/ForegroundPalm";
 import BackgroundPalm from "~objects/decorations/BackgroundPalm";
 import WaterReflection from "~objects/decorations/WaterReflection";
+import BigCloud from "~objects/decorations/BigCloud";
 
-export default class SampleScene extends Scene {
+export default class SampleScene extends Phaser.Scene {
 	private map: Phaser.Tilemaps.Tilemap;
+
+	private objectsNeedsUpdate: Set<Phaser.GameObjects.GameObject> = new Set();
 
 	private player: Player;
 
@@ -66,6 +69,15 @@ export default class SampleScene extends Scene {
 			});
 		}
 
+		const utilitiesLayer = this.map.getObjectLayer("Utilities");
+		const boundingPolygon = utilitiesLayer.objects.find(
+			(tile) => tile.type === "boundingPolygon"
+		);
+
+		const boundingBox = utilitiesLayer.objects.find(
+			(tile) => tile.type === "boundingBox"
+		);
+
 		this.map.getObjectLayer("Animated").objects.forEach((object) => {
 			if (object.type === "palm") {
 				const sprite = new ForegroundPalm(this, object.x, object.y);
@@ -80,6 +92,14 @@ export default class SampleScene extends Scene {
 			} else if (object.type === "waterReflectionBig") {
 				const sprite = new WaterReflection(this, "big", object.x, object.y);
 				this.add.existing(sprite);
+			} else if (object.type === "bigCloud") {
+				const sprite = new BigCloud(this, object.y, boundingPolygon, {
+					startX: boundingBox.x,
+					width: boundingBox.width + 300,
+				});
+				sprite.setDepth(constants.DEPTHS.clouds);
+				this.add.existing(sprite);
+				this.objectsNeedsUpdate.add(sprite);
 			}
 		});
 
@@ -89,5 +109,8 @@ export default class SampleScene extends Scene {
 	update(time: number, delta: number): void {
 		super.update(time, delta);
 		this.player.update(time, delta);
+		this.objectsNeedsUpdate.forEach((gameObject) => {
+			gameObject.update(time, delta);
+		});
 	}
 }
