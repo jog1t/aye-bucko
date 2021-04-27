@@ -51,10 +51,11 @@ export const ANIMATIONS = {
 };
 
 export const DEPTHS = {
-	clouds: 0,
-	background: 1,
-	player: 2,
-	terrain: 3,
-	decorations: 4,
+	background: 0,
+	clouds: 1,
+	backgroundDecorations: 2,
+	player: 3,
+	terrain: 4,
+	decorations: 5,
 	debug: 999,
 };

@@ -26,7 +26,6 @@ export default class SampleScene extends Phaser.Scene {
 		this.physics.add.collider(terrain, this.player);
 		this.cameras.main.zoomTo(2, 500, Phaser.Math.Easing.Cubic.InOut);
 		this.cameras.main.startFollow(this.player);
-		this.cameras.main.roundPixels = true;
 
 		this.scene.run(constants.SCENES.interface);
 	}
@@ -49,7 +48,9 @@ export default class SampleScene extends Phaser.Scene {
 			constants.TILE_SETS.island.background
 		);
 
-		this.map.createLayer("Background", backgroundTileset);
+		const background = this.map.createLayer("Background", backgroundTileset);
+		background.setScrollFactor(1.1);
+		background.setDepth(constants.DEPTHS.background);
 		const grass = this.map.createLayer("Grass", detailsTileset);
 		grass.setDepth(constants.DEPTHS.decorations);
 		const terrain = this.map.createLayer("Terrain", terrainTileset);
@@ -89,17 +90,19 @@ export default class SampleScene extends Phaser.Scene {
 				this.physics.add.collider(sprite, this.player);
 			} else if (object.type === "backgroundPalm") {
 				const sprite = new BackgroundPalm(this, object.x, object.y);
-				sprite.setDepth(constants.DEPTHS.background);
+				sprite.setDepth(constants.DEPTHS.backgroundDecorations);
 				sprite.x += sprite.width / 2;
 				this.add.existing(sprite);
 			} else if (object.type === "waterReflectionBig") {
 				const sprite = new WaterReflection(this, "big", object.x, object.y);
 				this.add.existing(sprite);
+				sprite.setScrollFactor(1.1);
 			} else if (object.type === "bigCloud") {
 				const sprite = new BigCloud(this, object.y, boundingPolygon, {
 					startX: boundingBox.x,
 					width: boundingBox.width + 300,
 				});
+				sprite.setScrollFactor(1.1);
 				sprite.setDepth(constants.DEPTHS.clouds);
 				this.add.existing(sprite);
 				this.objectsNeedsUpdate.add(sprite);

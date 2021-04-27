@@ -19,7 +19,7 @@ export default class BigCloud extends Phaser.GameObjects.Container {
 
 	private readonly cloudClonesCount: number;
 
-	public static readonly SCROLL_SPEED = 4;
+	public static readonly SCROLL_SPEED = 3;
 
 	constructor(
 		scene: Phaser.Scene,
