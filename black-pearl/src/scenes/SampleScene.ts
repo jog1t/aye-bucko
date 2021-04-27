@@ -50,7 +50,8 @@ export default class SampleScene extends Phaser.Scene {
 		);
 
 		this.map.createLayer("Background", backgroundTileset);
-		this.map.createLayer("Grass", detailsTileset);
+		const grass = this.map.createLayer("Grass", detailsTileset);
+		grass.setDepth(constants.DEPTHS.decorations);
 		const terrain = this.map.createLayer("Terrain", terrainTileset);
 		terrain.setDepth(constants.DEPTHS.terrain);
 		const palms = this.map.createLayer("Palms", detailsTileset);
@@ -84,11 +85,13 @@ export default class SampleScene extends Phaser.Scene {
 				sprite.setDepth(constants.DEPTHS.decorations);
 				sprite.x += sprite.width / 2 - 5;
 				sprite.y -= sprite.height / 2;
+				this.add.existing(sprite);
 				this.physics.add.collider(sprite, this.player);
 			} else if (object.type === "backgroundPalm") {
 				const sprite = new BackgroundPalm(this, object.x, object.y);
 				sprite.setDepth(constants.DEPTHS.background);
 				sprite.x += sprite.width / 2;
+				this.add.existing(sprite);
 			} else if (object.type === "waterReflectionBig") {
 				const sprite = new WaterReflection(this, "big", object.x, object.y);
 				this.add.existing(sprite);
