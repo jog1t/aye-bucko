@@ -100,7 +100,7 @@ export default class SampleScene extends Phaser.Scene {
 			} else if (object.type === "bigCloud") {
 				const sprite = new BigCloud(this, object.y, boundingPolygon, {
 					startX: boundingBox.x,
-					width: boundingBox.width + 300,
+					width: boundingBox.width,
 				});
 				sprite.setScrollFactor(1, 1.05);
 				sprite.setDepth(constants.DEPTHS.clouds);

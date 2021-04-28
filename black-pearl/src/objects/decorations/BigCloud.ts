@@ -86,7 +86,7 @@ export default class BigCloud extends Phaser.GameObjects.Container {
 		this.x += movement;
 		if (
 			this.x >
-			this.cloudFrame.width * this.cloudClonesCount + BigCloud.SCROLL_SPEED
+			this.scrollConfig.startX + this.cloudFrame.width * this.cloudClonesCount
 		) {
 			this.x = this.scrollConfig.startX;
 		}
