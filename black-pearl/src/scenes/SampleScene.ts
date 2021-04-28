@@ -5,7 +5,12 @@ import Player from "~objects/Player";
 import ForegroundPalm from "~objects/decorations/ForegroundPalm";
 import BackgroundPalm from "~objects/decorations/BackgroundPalm";
 import WaterReflection from "~objects/decorations/WaterReflection";
-import BigCloud from "~objects/decorations/BigCloud";
+import BigCloud from "~objects/decorations/clouds/BigCloud";
+import SmallCloud, { CloudType } from "~objects/decorations/clouds/SmallCloud";
+
+function objectTypeIsCloudType(tileType): tileType is CloudType {
+	return Object.values(CloudType).includes(tileType);
+}
 
 export default class SampleScene extends Phaser.Scene {
 	private map: Phaser.Tilemaps.Tilemap;
@@ -80,6 +85,10 @@ export default class SampleScene extends Phaser.Scene {
 			(tile) => tile.type === "boundingBox"
 		);
 
+		const scrollConfig = {
+			startX: boundingBox.x,
+			width: boundingBox.width,
+		};
 		this.map.getObjectLayer("Animated").objects.forEach((object) => {
 			if (object.type === "palm") {
 				const sprite = new ForegroundPalm(this, object.x, object.y);
@@ -98,11 +107,28 @@ export default class SampleScene extends Phaser.Scene {
 				this.add.existing(sprite);
 				sprite.setScrollFactor(1, 1.05);
 			} else if (object.type === "bigCloud") {
-				const sprite = new BigCloud(this, object.y, boundingPolygon, {
-					startX: boundingBox.x,
-					width: boundingBox.width,
-				});
+				const sprite = new BigCloud(
+					this,
+					object.x,
+					object.y,
+					boundingPolygon,
+					scrollConfig
+				);
 				sprite.setScrollFactor(1, 1.05);
+				sprite.setDepth(constants.DEPTHS.clouds);
+				this.add.existing(sprite);
+				this.objectsNeedsUpdate.add(sprite);
+			} else if (objectTypeIsCloudType(object.type)) {
+				const sprite = new SmallCloud(
+					this,
+					object.x,
+					object.y,
+					object.type,
+					boundingPolygon,
+					scrollConfig
+				);
+
+				sprite.setScrollFactor(1, 1.025);
 				sprite.setDepth(constants.DEPTHS.clouds);
 				this.add.existing(sprite);
 				this.objectsNeedsUpdate.add(sprite);
