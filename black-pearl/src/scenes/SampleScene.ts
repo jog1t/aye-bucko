@@ -49,7 +49,7 @@ export default class SampleScene extends Phaser.Scene {
 		);
 
 		const background = this.map.createLayer("Background", backgroundTileset);
-		background.setScrollFactor(1.1);
+		background.setScrollFactor(1, 1.05);
 		background.setDepth(constants.DEPTHS.background);
 		const grass = this.map.createLayer("Grass", detailsTileset);
 		grass.setDepth(constants.DEPTHS.decorations);
@@ -96,13 +96,13 @@ export default class SampleScene extends Phaser.Scene {
 			} else if (object.type === "waterReflectionBig") {
 				const sprite = new WaterReflection(this, "big", object.x, object.y);
 				this.add.existing(sprite);
-				sprite.setScrollFactor(1.1);
+				sprite.setScrollFactor(1, 1.05);
 			} else if (object.type === "bigCloud") {
 				const sprite = new BigCloud(this, object.y, boundingPolygon, {
 					startX: boundingBox.x,
 					width: boundingBox.width + 300,
 				});
-				sprite.setScrollFactor(1.1);
+				sprite.setScrollFactor(1, 1.05);
 				sprite.setDepth(constants.DEPTHS.clouds);
 				this.add.existing(sprite);
 				this.objectsNeedsUpdate.add(sprite);
