@@ -1,12 +1,21 @@
-import { Scene } from "phaser";
+import * as Phaser from "phaser";
 import * as constants from "~constants";
 import { isDev } from "~shared";
 import Player from "~objects/Player";
 import ForegroundPalm from "~objects/decorations/ForegroundPalm";
 import BackgroundPalm from "~objects/decorations/BackgroundPalm";
+import WaterReflection from "~objects/decorations/WaterReflection";
+import BigCloud from "~objects/decorations/clouds/BigCloud";
+import SmallCloud, { CloudType } from "~objects/decorations/clouds/SmallCloud";
 
-export default class SampleScene extends Scene {
+function objectTypeIsCloudType(tileType): tileType is CloudType {
+	return Object.values(CloudType).includes(tileType);
+}
+
+export default class SampleScene extends Phaser.Scene {
 	private map: Phaser.Tilemaps.Tilemap;
+
+	private objectsNeedsUpdate: Set<Phaser.GameObjects.GameObject> = new Set();
 
 	private player: Player;
 
@@ -22,7 +31,6 @@ export default class SampleScene extends Scene {
 		this.physics.add.collider(terrain, this.player);
 		this.cameras.main.zoomTo(2, 500, Phaser.Math.Easing.Cubic.InOut);
 		this.cameras.main.startFollow(this.player);
-		this.cameras.main.roundPixels = true;
 
 		this.scene.run(constants.SCENES.interface);
 	}
@@ -45,8 +53,11 @@ export default class SampleScene extends Scene {
 			constants.TILE_SETS.island.background
 		);
 
-		this.map.createLayer("Background", backgroundTileset);
-		this.map.createLayer("Grass", detailsTileset);
+		const background = this.map.createLayer("Background", backgroundTileset);
+		background.setScrollFactor(1, 1.05);
+		background.setDepth(constants.DEPTHS.background);
+		const grass = this.map.createLayer("Grass", detailsTileset);
+		grass.setDepth(constants.DEPTHS.decorations);
 		const terrain = this.map.createLayer("Terrain", terrainTileset);
 		terrain.setDepth(constants.DEPTHS.terrain);
 		const palms = this.map.createLayer("Palms", detailsTileset);
@@ -65,17 +76,62 @@ export default class SampleScene extends Scene {
 			});
 		}
 
+		const utilitiesLayer = this.map.getObjectLayer("Utilities");
+		const boundingPolygon = utilitiesLayer.objects.find(
+			(tile) => tile.type === "boundingPolygon"
+		);
+
+		const boundingBox = utilitiesLayer.objects.find(
+			(tile) => tile.type === "boundingBox"
+		);
+
+		const scrollConfig = {
+			startX: boundingBox.x,
+			width: boundingBox.width,
+		};
 		this.map.getObjectLayer("Animated").objects.forEach((object) => {
 			if (object.type === "palm") {
 				const sprite = new ForegroundPalm(this, object.x, object.y);
 				sprite.setDepth(constants.DEPTHS.decorations);
 				sprite.x += sprite.width / 2 - 5;
 				sprite.y -= sprite.height / 2;
+				this.add.existing(sprite);
 				this.physics.add.collider(sprite, this.player);
 			} else if (object.type === "backgroundPalm") {
 				const sprite = new BackgroundPalm(this, object.x, object.y);
-				sprite.setDepth(constants.DEPTHS.background);
+				sprite.setDepth(constants.DEPTHS.backgroundDecorations);
 				sprite.x += sprite.width / 2;
+				this.add.existing(sprite);
+			} else if (object.type === "waterReflectionBig") {
+				const sprite = new WaterReflection(this, "big", object.x, object.y);
+				this.add.existing(sprite);
+				sprite.setScrollFactor(1, 1.05);
+			} else if (object.type === "bigCloud") {
+				const sprite = new BigCloud(
+					this,
+					object.x,
+					object.y,
+					boundingPolygon,
+					scrollConfig
+				);
+				sprite.setScrollFactor(1, 1.05);
+				sprite.setDepth(constants.DEPTHS.clouds);
+				this.add.existing(sprite);
+				this.objectsNeedsUpdate.add(sprite);
+			} else if (objectTypeIsCloudType(object.type)) {
+				const sprite = new SmallCloud(
+					this,
+					object.x,
+					object.y,
+					object.type,
+					boundingPolygon,
+					scrollConfig
+				);
+
+				sprite.setScrollFactor(1, 1.025);
+				sprite.setDepth(constants.DEPTHS.clouds);
+				this.add.existing(sprite);
+				this.objectsNeedsUpdate.add(sprite);
 			}
 		});
 
@@ -85,5 +141,8 @@ export default class SampleScene extends Scene {
 	update(time: number, delta: number): void {
 		super.update(time, delta);
 		this.player.update(time, delta);
+		this.objectsNeedsUpdate.forEach((gameObject) => {
+			gameObject.update(time, delta);
+		});
 	}
 }

@@ -25,6 +25,8 @@ export const ATLASES = {
 	},
 	objects: {
 		palms: "ATLASES/objects/palms",
+		waterReflections: "ATLASES/objects/waterReflections",
+		clouds: "ATLASES/objects/clouds",
 	},
 };
 
@@ -40,13 +42,20 @@ export const ANIMATIONS = {
 	objects: {
 		foregroundPalm: "ANIMATIONS/objects/foregroundPalm",
 		backgroundPalm: "ANIMATIONS/objects/backgroundPalm",
+		waterReflections: {
+			big: "ANIMATIONS/objects/waterReflections/big",
+			medium: "ANIMATIONS/objects/waterReflections/medium",
+			small: "ANIMATIONS/objects/waterReflections/small",
+		},
 	},
 };
 
 export const DEPTHS = {
-	background: 1,
-	player: 2,
-	terrain: 3,
-	decorations: 4,
+	background: 0,
+	clouds: 1,
+	backgroundDecorations: 2,
+	player: 3,
+	terrain: 4,
+	decorations: 5,
 	debug: 999,
 };

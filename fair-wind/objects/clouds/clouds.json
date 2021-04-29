@@ -1,0 +1,103 @@
+{
+	"textures": [
+		{
+			"image": "clouds.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 448,
+				"h": 140
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Big Clouds",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 448,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 448,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 448,
+						"h": 101
+					}
+				},
+				{
+					"filename": "Small Cloud 3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 140,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 140,
+						"h": 39
+					},
+					"frame": {
+						"x": 0,
+						"y": 101,
+						"w": 140,
+						"h": 39
+					}
+				},
+				{
+					"filename": "Small Cloud 2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 133,
+						"h": 35
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 133,
+						"h": 35
+					},
+					"frame": {
+						"x": 140,
+						"y": 101,
+						"w": 133,
+						"h": 35
+					}
+				},
+				{
+					"filename": "Small Cloud 1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 74,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 74,
+						"h": 24
+					},
+					"frame": {
+						"x": 273,
+						"y": 101,
+						"w": 74,
+						"h": 24
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}

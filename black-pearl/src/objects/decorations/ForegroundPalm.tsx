@@ -4,7 +4,6 @@ export default class ForegroundPalm extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene: Phaser.Scene, x: number, y: number) {
 		super(scene, x, y, constants.ATLASES.objects.palms);
 		scene.physics.add.existing(this);
-		scene.add.existing(this);
 		this.play(constants.ANIMATIONS.objects.foregroundPalm);
 
 		this.setImmovable(true);
