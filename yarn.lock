@@ -38,7 +38,7 @@
     express "^4.16.3"
     node-os-utils "^1.2.0"
 
-"@colyseus/schema@^1.0.15":
+"@colyseus/schema@^1.0.15", "@colyseus/schema@^1.0.23":
   version "1.0.23"
   resolved "https://registry.yarnpkg.com/@colyseus/schema/-/schema-1.0.23.tgz#881a49a432becce43e1cea2ebb5f296952d8399e"
   integrity sha512-0G3LJxckKXrEDJ7C2l9U7K2vSxj9Zbevuz5ssUP41FGhSLDupOr+++M9X5CeRNuV/jlx+H3v0/SHRD10DZDELA==
