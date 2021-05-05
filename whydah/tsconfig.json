@@ -7,6 +7,7 @@
 		"resolveJsonModule": false,
 		"strict": true,
 		"baseUrl": "./src",
+		"experimentalDecorators": true,
 		"paths": {
 			"~assets/*": ["../../fair-wind/*"],
 			"~shared/*": ["../../ambrose-light/*"],
