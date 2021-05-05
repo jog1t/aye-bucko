@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"outDir": "./build/",
+		"module": "commonjs",
+		"target": "es6",
+		"allowJs": true,
+		"resolveJsonModule": false,
+		"strict": true,
+		"baseUrl": "./src",
+		"paths": {
+			"~assets/*": ["../../fair-wind/*"],
+			"~shared/*": ["../../ambrose-light/*"],
+			"~shared": ["../../ambrose-light/index.ts"],
+		}
+	}
+}
