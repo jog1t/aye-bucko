@@ -3,6 +3,13 @@ import { isDev } from "~shared";
 import Bootstrap from "./scenes/BootstrapScene";
 import SampleScene from "./scenes/SampleScene";
 import InterfaceScene from "./scenes/InterfaceScene";
+import SyncPlugin from "./plugins/SyncPlugin";
+
+declare module "phaser" {
+	export interface Scene {
+		sync: SyncPlugin;
+	}
+}
 
 export default class Game extends Phaser.Game {
 	constructor() {
@@ -23,6 +30,16 @@ export default class Game extends Phaser.Game {
 					debug: isDev(),
 					gravity: { y: 450 },
 				},
+			},
+			plugins: {
+				global: [
+					{
+						key: "SyncPlugin",
+						plugin: SyncPlugin,
+						start: true,
+						mapping: "sync",
+					},
+				],
 			},
 			render: { pixelArt: true, antialias: false },
 			scene: [Bootstrap, SampleScene, InterfaceScene],
