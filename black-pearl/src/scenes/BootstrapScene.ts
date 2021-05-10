@@ -1,6 +1,7 @@
 import { Scene } from "phaser";
 import * as constants from "~constants";
 import { creators, loaders } from "~utilities";
+import { ROOMS } from "~shared/constants";
 
 export default class Bootstrap extends Scene {
 	constructor() {
@@ -31,6 +32,17 @@ export default class Bootstrap extends Scene {
 	/* eslint-enable */
 
 	private onLoadComplete() {
-		this.scene.start(constants.SCENES.sample);
+		this.sync
+			.join(ROOMS.sampleRoom)
+			.then(() => {
+				this.scene.start(constants.SCENES.sample);
+			})
+			.catch(() => {
+				// TODO(jog1t)
+				// eslint-disable-next-line no-alert
+				alert(
+					"There has been an error connecting to the sample room. Please try again later."
+				);
+			});
 	}
 }
