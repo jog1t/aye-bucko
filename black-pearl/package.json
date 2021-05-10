@@ -25,6 +25,8 @@
 		]
 	},
 	"dependencies": {
+		"colyseus.js": "^0.14.12",
+		"dotenv-webpack": "^7.0.2",
 		"phaser": "^3.53.1"
 	},
 	"devDependencies": {
