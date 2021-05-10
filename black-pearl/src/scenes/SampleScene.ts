@@ -1,11 +1,11 @@
-import { Scene } from "phaser";
+import * as Phaser from "phaser";
 import * as constants from "~constants";
 import { isDev } from "~shared";
 import Player from "~objects/Player";
 import ForegroundPalm from "~objects/decorations/ForegroundPalm";
 import BackgroundPalm from "~objects/decorations/BackgroundPalm";
 
-export default class SampleScene extends Scene {
+export default class SampleScene extends Phaser.Scene {
 	private map: Phaser.Tilemaps.Tilemap;
 
 	private player: Player;
