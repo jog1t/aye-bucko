@@ -1,5 +1,7 @@
 import * as constants from "~constants";
 import InterfaceScene from "~scenes/InterfaceScene";
+import { managers } from "~utilities";
+import { Controls } from "~types";
 import Vector2 = Phaser.Math.Vector2;
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
@@ -9,7 +11,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 	private interfaceControlsMovementVector = new Vector2();
 
-	private inputKeys: Record<"W" | "S" | "A" | "D", Phaser.Input.Keyboard.Key>;
+	private controls: Controls;
 
 	constructor(scene: Phaser.Scene, x: number, y: number) {
 		super(scene, x, y, constants.ATLASES.characters.captain);
@@ -19,9 +21,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.body.setSize(16, 8);
 		this.body.setOffset(24, 24);
 
-		this.inputKeys = this.scene.input.keyboard.addKeys(
-			"W,S,A,D"
-		) as Player["inputKeys"];
+		this.controls = new managers.ControlsManager(this.scene.input);
 
 		this.body.setMass(120);
 
@@ -59,16 +59,23 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		const movement = new Vector2(0, 0);
 
 		// run right
-		if (this.inputKeys.D.isDown || this.interfaceControlsMovementVector.x > 0) {
+		if (
+			this.controls.isRightDown() ||
+			this.interfaceControlsMovementVector.x > 0
+		) {
 			movement.x = this.MOVEMENT_SPEED;
 		}
 		// run left
-		if (this.inputKeys.A.isDown || this.interfaceControlsMovementVector.x < 0) {
+		if (
+			this.controls.isLeftDown() ||
+			this.interfaceControlsMovementVector.x < 0
+		) {
 			movement.x = -this.MOVEMENT_SPEED;
 		}
 		// jump
 		if (
-			(this.inputKeys.W.isDown || this.interfaceControlsMovementVector.y > 0) &&
+			(this.controls.isJumpDown() ||
+				this.interfaceControlsMovementVector.y > 0) &&
 			this.body.blocked.down
 		) {
 			movement.y = -200;
