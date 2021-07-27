@@ -1,6 +1,7 @@
 import * as constants from "~constants";
 import InterfaceScene from "~scenes/InterfaceScene";
 import { managers } from "~utilities";
+import { Controls } from "~types";
 import Vector2 = Phaser.Math.Vector2;
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
@@ -10,7 +11,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 	private interfaceControlsMovementVector = new Vector2();
 
-	private controls: managers.ControlsManager;
+	private controls: Controls;
 
 	constructor(scene: Phaser.Scene, x: number, y: number) {
 		super(scene, x, y, constants.ATLASES.characters.captain);

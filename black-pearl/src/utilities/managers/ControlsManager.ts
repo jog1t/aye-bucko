@@ -1,6 +1,7 @@
 import * as Phaser from "phaser";
+import { Controls } from "~types";
 
-export default class ControlsManager {
+export default class ControlsManager implements Controls {
 	private keysNames = [
 		"W",
 		"S",
