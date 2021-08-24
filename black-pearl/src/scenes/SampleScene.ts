@@ -1,66 +1,61 @@
 import * as Phaser from "phaser";
+import { isDev } from "@jog1t/ambrose-light";
 import * as constants from "~constants";
-import { isDev } from "~shared";
-import Player from "~objects/Player";
-import ForegroundPalm from "~objects/decorations/ForegroundPalm";
-import BackgroundPalm from "~objects/decorations/BackgroundPalm";
-import Pirate from "~objects/Pirate";
-import NetworkPlayer from "~objects/network/NetworkPlayer";
-import { DEPTHS } from "~constants";
+import { ForegroundPalm, BackgroundPalm } from "~objects/decorations";
+import { NetworkPlayersGroup } from "~objects/network";
 
 export default class SampleScene extends Phaser.Scene {
-	private map: Phaser.Tilemaps.Tilemap;
-
-	private characters: Map<string, Pirate> = new Map();
-
-	private mainPlayer: Player;
+	private networkController;
 
 	constructor() {
 		super(constants.SCENES.sample);
+		this.networkController = new NetworkPlayersGroup(this);
 	}
 
 	create(): void {
-		const { terrain } = this.createTileMap();
-		this.sync.currentRoom.state.players.onRemove = (player, sessionId) => {
-			this.characters.get(sessionId)?.destroy();
-			this.characters.delete(sessionId);
-		};
-
-		this.sync.currentRoom.state.players.onAdd = (player, sessionId) => {};
-
-		this.mainPlayer = new NetworkPlayer(this, 300, 300);
-		this.mainPlayer.setDepth(DEPTHS.player);
-		this.physics.add.collider(terrain, this.mainPlayer);
-		this.cameras.main.startFollow(this.mainPlayer);
+		this.cameras.main.setBackgroundColor("#33333e");
 		this.cameras.main.roundPixels = true;
 
-		this.cameras.main.zoomTo(2, 500, Phaser.Math.Easing.Cubic.InOut);
+		const { terrain } = this.createTileMap();
+		this.add.existing(this.networkController);
+		this.networkController.on(
+			NetworkPlayersGroup.EVENTS.ENTITY_ADD,
+			({ entity, isCurrentPlayer }) => {
+				if (isCurrentPlayer) {
+					this.cameras.main.startFollow(entity);
+					this.cameras.main.zoomTo(2, 500, Phaser.Math.Easing.Cubic.InOut);
+				}
+			}
+		);
+
+		this.physics.add.collider(terrain, this.networkController);
+		this.networkController.init();
+
 		this.scene.run(constants.SCENES.interface);
 	}
 
 	private createTileMap(): { terrain: Phaser.Tilemaps.TilemapLayer } {
-		this.cameras.main.setBackgroundColor("#33333e");
-		this.map = this.make.tilemap({
+		const map = this.make.tilemap({
 			key: constants.TILE_MAPS.sample,
 		});
-		const terrainTileset = this.map.addTilesetImage(
+		const terrainTileset = map.addTilesetImage(
 			"island-terrain",
 			constants.TILE_SETS.island.terrain
 		);
-		const detailsTileset = this.map.addTilesetImage(
+		const detailsTileset = map.addTilesetImage(
 			"island-details",
 			constants.TILE_SETS.island.details
 		);
-		const backgroundTileset = this.map.addTilesetImage(
+		const backgroundTileset = map.addTilesetImage(
 			"island-background",
 			constants.TILE_SETS.island.background
 		);
 
-		this.map.createLayer("Background", backgroundTileset);
-		this.map.createLayer("Grass", detailsTileset);
-		const terrain = this.map.createLayer("Terrain", terrainTileset);
+		map.createLayer("Background", backgroundTileset);
+		map.createLayer("Grass", detailsTileset);
+		const terrain = map.createLayer("Terrain", terrainTileset);
 		terrain.setDepth(constants.DEPTHS.terrain);
-		const palms = this.map.createLayer("Palms", detailsTileset);
+		const palms = map.createLayer("Palms", detailsTileset);
 		palms.setDepth(constants.DEPTHS.decorations);
 
 		terrain.setCollisionByProperty({ collides: true });
@@ -76,14 +71,13 @@ export default class SampleScene extends Phaser.Scene {
 			});
 		}
 
-		this.map.getObjectLayer("Animated").objects.forEach((object) => {
-			if (object.type === "palm") {
+		map.getObjectLayer("Animated").objects.forEach((object) => {
+			if (object.type === "palm" && object.x && object.y) {
 				const sprite = new ForegroundPalm(this, object.x, object.y);
 				sprite.setDepth(constants.DEPTHS.decorations);
 				sprite.x += sprite.width / 2 - 5;
 				sprite.y -= sprite.height / 2;
-				// this.physics.add.collider(sprite, this.player);
-			} else if (object.type === "backgroundPalm") {
+			} else if (object.type === "backgroundPalm" && object.x && object.y) {
 				const sprite = new BackgroundPalm(this, object.x, object.y);
 				sprite.setDepth(constants.DEPTHS.background);
 				sprite.x += sprite.width / 2;
@@ -95,7 +89,8 @@ export default class SampleScene extends Phaser.Scene {
 
 	update(time: number, delta: number): void {
 		super.update(time, delta);
-		this.mainPlayer?.update(time, delta);
-		this.characters.forEach((value) => value.update(time, delta));
+		this.networkController.sessions.forEach((player) => {
+			player.update(time, delta);
+		});
 	}
 }
