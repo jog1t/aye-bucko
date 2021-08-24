@@ -35,6 +35,7 @@ export const ANIMATIONS = {
 			run: "ANIMATIONS/characters/captain/run",
 			fall: "ANIMATIONS/characters/captain/fall",
 			jump: "ANIMATIONS/characters/captain/jump",
+			dead: "ANIMATIONS/characters/captain/dead",
 		},
 	},
 	objects: {

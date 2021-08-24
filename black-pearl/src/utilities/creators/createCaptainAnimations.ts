@@ -37,4 +37,12 @@ export default function createCaptainAnimations(scene: Scene): void {
 		),
 		frameRate: 10,
 	});
+	scene.anims.create({
+		key: constants.ANIMATIONS.characters.captain.dead,
+		frames: scene.anims.generateFrameNames(
+			constants.ATLASES.characters.captain,
+			{ prefix: "Dead Ground ", start: 1, end: 4, zeroPad: 2 }
+		),
+		frameRate: 10,
+	});
 }
