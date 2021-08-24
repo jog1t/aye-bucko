@@ -18,3 +18,10 @@ jobs:
            with:
             name: black-pearl
             path: black-pearl/build
+   deploy:
+      name: Deploy
+      runs-on: self-hosted
+      needs:
+         - build--black-pearl
+      steps:
+         - run: echo Hello!
