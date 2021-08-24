@@ -25,13 +25,14 @@
 		]
 	},
 	"dependencies": {
+		"@colyseus/schema": "^1.0.23",
+		"@jog1t/ambrose-light": "1.0.0",
+		"@jog1t/fair-wind": "1.0.0",
 		"colyseus.js": "^0.14.12",
 		"dotenv-webpack": "^7.0.2",
 		"lodash": "^4.17.21",
 		"phaser": "^3.53.1",
-		"@jog1t/ambrose-light": "1.0.0",
-		"@jog1t/fair-wind": "1.0.0",
-		"@colyseus/schema": "^1.0.23"
+		"type-fest": "^2.1.0"
 	},
 	"devDependencies": {
 		"@types/lodash": "^4.14.169",

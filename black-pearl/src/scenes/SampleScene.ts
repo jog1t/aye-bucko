@@ -10,9 +10,10 @@ import {
 	WaterReflection,
 } from "~objects/decorations";
 import { NetworkPlayersGroup } from "~objects/network";
+import { guards } from "~utilities";
 
-function objectTypeIsCloudType(tileType): tileType is CloudType {
-	return Object.values(CloudType).includes(tileType);
+function objectTypeIsCloudType(tileType: string): tileType is CloudType {
+	return Object.values(CloudType).includes(tileType as CloudType);
 }
 
 export default class SampleScene extends Phaser.Scene {
@@ -97,18 +98,21 @@ export default class SampleScene extends Phaser.Scene {
 		);
 
 		const scrollConfig = {
-			startX: boundingBox.x,
-			width: boundingBox.width,
+			startX: boundingBox?.x ?? 0,
+			width: boundingBox?.width ?? 1000,
 		};
-		this.map.getObjectLayer("Animated").objects.forEach((object) => {
-			if (object.type === "palm" && object.x && object.y) {
+		map.getObjectLayer("Animated").objects.forEach((object) => {
+			if (!guards.objectHasCoords(object)) {
+				return;
+			}
+
+			if (object.type === "palm") {
 				const sprite = new ForegroundPalm(this, object.x, object.y);
 				sprite.setDepth(constants.DEPTHS.decorations);
 				sprite.x += sprite.width / 2 - 5;
 				sprite.y -= sprite.height / 2;
 				this.add.existing(sprite);
-				this.physics.add.collider(sprite, this.player);
-			} else if (object.type === "backgroundPalm" && object.x && object.y) {
+			} else if (object.type === "backgroundPalm") {
 				const sprite = new BackgroundPalm(this, object.x, object.y);
 				sprite.setDepth(constants.DEPTHS.backgroundDecorations);
 				sprite.x += sprite.width / 2;
@@ -117,7 +121,12 @@ export default class SampleScene extends Phaser.Scene {
 				const sprite = new WaterReflection(this, "big", object.x, object.y);
 				this.add.existing(sprite);
 				sprite.setScrollFactor(1, 1.05);
-			} else if (object.type === "bigCloud") {
+			} else if (
+				object.type === "bigCloud" &&
+				boundingPolygon &&
+				guards.objectHasCoords(boundingPolygon) &&
+				guards.objectHasPolygon(boundingPolygon)
+			) {
 				const sprite = new BigCloud(
 					this,
 					object.x,
@@ -129,7 +138,12 @@ export default class SampleScene extends Phaser.Scene {
 				sprite.setDepth(constants.DEPTHS.clouds);
 				this.add.existing(sprite);
 				this.objectsNeedsUpdate.add(sprite);
-			} else if (objectTypeIsCloudType(object.type)) {
+			} else if (
+				objectTypeIsCloudType(object.type) &&
+				boundingPolygon &&
+				guards.objectHasCoords(boundingPolygon) &&
+				guards.objectHasPolygon(boundingPolygon)
+			) {
 				const sprite = new SmallCloud(
 					this,
 					object.x,
