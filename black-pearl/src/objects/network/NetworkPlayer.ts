@@ -1,3 +1,4 @@
+import { NETWORK_MESSAGE, PlayerState } from "@jog1t/ambrose-light";
 import Player from "~objects/Player";
 
 export default class NetworkPlayer extends Player {
@@ -5,12 +6,7 @@ export default class NetworkPlayer extends Player {
 
 	private lastSync = 0;
 
-	private lastValues: {
-		x?: number;
-		y?: number;
-		velocityX?: number;
-		velocityY?: number;
-	} = {};
+	private lastValues: Partial<PlayerState> = {};
 
 	update(time: number, delta: number): void {
 		super.update(time, delta);
@@ -23,8 +19,7 @@ export default class NetworkPlayer extends Player {
 			this.lastSync = time;
 			const diff = this.createDiff();
 			if (Object.keys(diff).length > 0) {
-				console.log("SYNC!");
-				this.scene.sync.currentRoom.send("playerUpdate", diff);
+				this.scene.sync.getRoom().send(NETWORK_MESSAGE.player.update, diff);
 			}
 
 			this.lastValues = {
@@ -36,7 +31,7 @@ export default class NetworkPlayer extends Player {
 		}
 	}
 
-	createDiff() {
+	createDiff(): Partial<PlayerState> {
 		return {
 			...(this.lastValues.x?.toFixed(2) !== this.x.toFixed(2)
 				? { x: this.x }
