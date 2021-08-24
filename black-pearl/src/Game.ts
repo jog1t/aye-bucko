@@ -1,5 +1,5 @@
 import * as Phaser from "phaser";
-import { isDev } from "~shared";
+import { isDev } from "@jog1t/ambrose-light";
 import Bootstrap from "./scenes/BootstrapScene";
 import SampleScene from "./scenes/SampleScene";
 import InterfaceScene from "./scenes/InterfaceScene";

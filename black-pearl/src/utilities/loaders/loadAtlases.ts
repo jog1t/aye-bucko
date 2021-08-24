@@ -1,12 +1,12 @@
 import { Scene } from "phaser";
-import * as constants from "~constants";
 // assets
-import captainAtlasTextureUrl from "~assets/characters/captain/captain.png";
-import captainAtlasJsonUrl from "~assets/characters/captain/captain.json";
-import palmsAtlasTextureUrl from "~assets/objects/palms/palms.png";
-import palmsAtlasJsonUrl from "~assets/objects/palms/palms.json";
-import mobileControlsTextureUrl from "~assets/interface-elements/mobile-controls/controls.png";
-import mobileControlsJsonUrl from "~assets/interface-elements/mobile-controls/controls.json";
+import captainAtlasTextureUrl from "@jog1t/fair-wind/characters/captain/captain.png";
+import captainAtlasJsonUrl from "@jog1t/fair-wind/characters/captain/captain.json";
+import palmsAtlasTextureUrl from "@jog1t/fair-wind/objects/palms/palms.png";
+import palmsAtlasJsonUrl from "@jog1t/fair-wind/objects/palms/palms.json";
+import mobileControlsTextureUrl from "@jog1t/fair-wind/interface-elements/mobile-controls/controls.png";
+import mobileControlsJsonUrl from "@jog1t/fair-wind/interface-elements/mobile-controls/controls.json";
+import * as constants from "~constants";
 
 export default function loadAtlases(scene: Scene): void {
 	scene.load.atlas(

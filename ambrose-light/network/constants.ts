@@ -3,3 +3,6 @@ export const NETWORK_MESSAGE = {
     update: "p/u",
   },
 };
+export const ROOMS = {
+  sampleRoom: "sampleRoom",
+};

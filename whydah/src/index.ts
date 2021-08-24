@@ -2,8 +2,8 @@
 import { Server } from "colyseus";
 import { createServer } from "http";
 import { monitor } from "@colyseus/monitor";
-import * as express from "express";
-import { ROOMS } from "@jog1t/ambrose-light/constants";
+import express from "express";
+import { ROOMS } from "@jog1t/ambrose-light";
 import SampleRoom from "./rooms/SampleRoom";
 
 const port = Number(process.env.PORT) || 3000;

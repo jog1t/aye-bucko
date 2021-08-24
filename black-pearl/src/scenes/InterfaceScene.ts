@@ -1,6 +1,6 @@
 import { Scene, Textures, GameObjects } from "phaser";
+import { isDev } from "@jog1t/ambrose-light";
 import * as constants from "~constants";
-import { isDev } from "~shared";
 
 enum ControlEvents {
 	CONTROL_DOWN = "control-down",
@@ -8,7 +8,7 @@ enum ControlEvents {
 }
 
 export default class InterfaceScene extends Scene {
-	private up: GameObjects.Image;
+	private up: GameObjects.Image | undefined;
 
 	private downPointersControlsMap: Map<number, string> = new Map();
 
@@ -98,7 +98,9 @@ export default class InterfaceScene extends Scene {
 
 	private onControlPointerUp(
 		pointerId: number,
-		controlName: string = this.downPointersControlsMap.get(pointerId)
+		controlName: string | undefined = this.downPointersControlsMap.get(
+			pointerId
+		)
 	): void {
 		this.downPointersControlsMap.delete(pointerId);
 		this.events.emit(ControlEvents.CONTROL_UP, controlName);

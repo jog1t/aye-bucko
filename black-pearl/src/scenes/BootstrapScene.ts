@@ -1,7 +1,7 @@
 import { Scene } from "phaser";
+import { ROOMS } from "@jog1t/ambrose-light";
 import * as constants from "~constants";
 import { creators, loaders } from "~utilities";
-import { ROOMS } from "~shared/constants";
 import { UserDataController } from "~controllers";
 
 export default class Bootstrap extends Scene {

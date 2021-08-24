@@ -1,4 +1,4 @@
-import { LOCALSTORAGE_KEY } from "~shared/constants";
+import { LOCALSTORAGE_KEY } from "@jog1t/ambrose-light/constants";
 
 export default class UserDataController {
 	private getUserName(): string | null {
