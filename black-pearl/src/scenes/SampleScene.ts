@@ -4,26 +4,37 @@ import { isDev } from "~shared";
 import Player from "~objects/Player";
 import ForegroundPalm from "~objects/decorations/ForegroundPalm";
 import BackgroundPalm from "~objects/decorations/BackgroundPalm";
+import Pirate from "~objects/Pirate";
+import NetworkPlayer from "~objects/network/NetworkPlayer";
+import { DEPTHS } from "~constants";
 
 export default class SampleScene extends Phaser.Scene {
 	private map: Phaser.Tilemaps.Tilemap;
 
-	private player: Player;
+	private characters: Map<string, Pirate> = new Map();
+
+	private mainPlayer: Player;
 
 	constructor() {
 		super(constants.SCENES.sample);
 	}
 
 	create(): void {
-		this.player = new Player(this, 300, 300);
-		this.player.setDepth(constants.DEPTHS.player);
-
 		const { terrain } = this.createTileMap();
-		this.physics.add.collider(terrain, this.player);
-		this.cameras.main.zoomTo(2, 500, Phaser.Math.Easing.Cubic.InOut);
-		this.cameras.main.startFollow(this.player);
+		this.sync.currentRoom.state.players.onRemove = (player, sessionId) => {
+			this.characters.get(sessionId)?.destroy();
+			this.characters.delete(sessionId);
+		};
+
+		this.sync.currentRoom.state.players.onAdd = (player, sessionId) => {};
+
+		this.mainPlayer = new NetworkPlayer(this, 300, 300);
+		this.mainPlayer.setDepth(DEPTHS.player);
+		this.physics.add.collider(terrain, this.mainPlayer);
+		this.cameras.main.startFollow(this.mainPlayer);
 		this.cameras.main.roundPixels = true;
 
+		this.cameras.main.zoomTo(2, 500, Phaser.Math.Easing.Cubic.InOut);
 		this.scene.run(constants.SCENES.interface);
 	}
 
@@ -71,7 +82,7 @@ export default class SampleScene extends Phaser.Scene {
 				sprite.setDepth(constants.DEPTHS.decorations);
 				sprite.x += sprite.width / 2 - 5;
 				sprite.y -= sprite.height / 2;
-				this.physics.add.collider(sprite, this.player);
+				// this.physics.add.collider(sprite, this.player);
 			} else if (object.type === "backgroundPalm") {
 				const sprite = new BackgroundPalm(this, object.x, object.y);
 				sprite.setDepth(constants.DEPTHS.background);
@@ -84,6 +95,7 @@ export default class SampleScene extends Phaser.Scene {
 
 	update(time: number, delta: number): void {
 		super.update(time, delta);
-		this.player.update(time, delta);
+		this.mainPlayer?.update(time, delta);
+		this.characters.forEach((value) => value.update(time, delta));
 	}
 }

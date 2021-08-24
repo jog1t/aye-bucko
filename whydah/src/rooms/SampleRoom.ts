@@ -5,6 +5,10 @@ export default class SampleRoom extends Room<SampleState> {
 	onCreate(options: unknown): void {
 		super.onCreate?.(options);
 		this.setState(new SampleState());
+
+		this.onMessage("playerUpdate", (client, data) => {
+			this.state.movePlayer(client.sessionId, data);
+		});
 	}
 
 	onJoin(client: Client, options?: unknown, auth?: unknown): void {

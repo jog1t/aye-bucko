@@ -1,5 +1,5 @@
 {
-  "name": "whydah",
+  "name": "@jog1t/whydah",
   "version": "1.0.0",
   "main": "src/index.ts",
   "author": "Kacper Wojciechowski",
