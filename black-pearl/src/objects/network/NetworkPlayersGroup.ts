@@ -2,7 +2,8 @@ import * as Phaser from "phaser";
 import { PlayerSchema } from "@jog1t/ambrose-light";
 import { DataChange } from "@colyseus/schema";
 import { DEPTHS } from "~constants";
-import { NetworkPirate, NetworkPlayer } from "~objects/network";
+import NetworkPlayer from "~objects/network/NetworkPlayer";
+import NetworkPirate from "~objects/network/NetworkPirate";
 import { Pirate } from "~objects";
 
 enum EVENTS {
