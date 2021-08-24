@@ -13,8 +13,7 @@ jobs:
               node-version: '14'
          - run: npm -g install yarn
          - run: yarn install
-         - run: cd black-pearl
-         - run: yarn build
+         - run: cd black-pearl && yarn build
          - uses: actions/upload-artifact@v2
            with:
             name: black-pearl
