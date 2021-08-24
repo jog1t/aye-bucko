@@ -1,0 +1,17 @@
+name: Deploy game
+
+on: push
+
+jobs:
+   build--black-pearl:
+      name: Build Black Pearl (game frontend)
+      runs-on: self-hosted
+      steps:
+         - uses: actions/checkout@v2
+         - run: yarn install
+         - run: cd black-pearl
+         - run: yarn build
+         - uses: actions/upload-artifact@v2
+           with:
+            name: black-pearl
+            path: black-pearl/build
