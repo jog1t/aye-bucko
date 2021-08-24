@@ -12,6 +12,7 @@ jobs:
            with:
               node-version: '14'
               cache: 'yarn'
+         - run: npm -g install yarn
          - run: yarn install
          - run: cd black-pearl
          - run: yarn build
