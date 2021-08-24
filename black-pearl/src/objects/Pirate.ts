@@ -5,6 +5,8 @@ import Vector2 = Phaser.Math.Vector2;
 export default class Pirate extends Phaser.Physics.Arcade.Sprite {
 	private ANIMATIONS = constants.ANIMATIONS.characters.captain;
 
+	private isDying = false;
+
 	constructor(scene: Phaser.Scene, x: number, y: number) {
 		super(scene, x, y, constants.ATLASES.characters.captain);
 		scene.physics.add.existing(this);
@@ -16,6 +18,18 @@ export default class Pirate extends Phaser.Physics.Arcade.Sprite {
 		this.body.setMass(120);
 	}
 
+	public kill(after?: () => void): void {
+		this.once(
+			Phaser.Animations.Events.ANIMATION_COMPLETE,
+			(animation: Phaser.Animations.Animation) => {
+				if (animation.key === this.ANIMATIONS.dead) {
+					after?.();
+				}
+			}
+		);
+		this.isDying = true;
+	}
+
 	update(time: number, delta: number): void {
 		super.update(time, delta);
 		this.playAnimationsBasedOnMovement(this.body.velocity);
@@ -24,6 +38,11 @@ export default class Pirate extends Phaser.Physics.Arcade.Sprite {
 	private playAnimationsBasedOnMovement(movement: Vector2): void {
 		const isJumping =
 			this.anims.isPlaying && this.anims.getName() === this.ANIMATIONS.jump;
+
+		if (this.isDying) {
+			this.anims.play(this.ANIMATIONS.dead, true);
+			return;
+		}
 
 		// flip character sprite according to its movement
 		if (movement.x > 0) {
