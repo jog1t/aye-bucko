@@ -17,7 +17,9 @@
     "@colyseus/schema": "^1.0.23",
     "@types/express": "^4.17.11",
     "colyseus": "^0.14.13",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "@jog1t/ambrose-light": "1.0.0",
+    "@jog1t/fair-wind": "1.0.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.35",

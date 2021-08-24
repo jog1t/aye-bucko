@@ -1,6 +1,10 @@
 import { Schema, type } from "@colyseus/schema";
+import { PlayerState } from "@jog1t/ambrose-light";
 
-export default class Player extends Schema {
+export default class Player extends Schema implements PlayerState {
+	@type("string")
+	name = "";
+
 	@type("number")
 	x = 300;
 

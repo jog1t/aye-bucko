@@ -1,22 +1,22 @@
 import { MapSchema, Schema, type } from "@colyseus/schema";
+import { getRandomInt, PlayerState } from "@jog1t/ambrose-light";
 import Player from "./Player";
 
 export default class SampleState extends Schema {
 	@type({ map: Player })
 	players = new MapSchema<Player>();
 
-	createPlayer(sessionId: string): void {
-		this.players.set(sessionId, new Player());
+	createPlayer(sessionId: string, opts?: { userName?: string }): void {
+		const player = new Player();
+		player.name = opts?.userName ?? `Player ${getRandomInt(0, 10000)}`;
+		this.players.set(sessionId, player);
 	}
 
 	removePlayer(sessionId: string): void {
 		this.players.delete(sessionId);
 	}
 
-	movePlayer(
-		sessionId: string,
-		pos: { x?: number; y?: number; velocityX?: number; velocityY?: number }
-	): void {
+	movePlayer(sessionId: string, pos: PlayerState): void {
 		const player = this.players.get(sessionId);
 		if (!player) {
 			return;

@@ -3,7 +3,7 @@ import { Server } from "colyseus";
 import { createServer } from "http";
 import { monitor } from "@colyseus/monitor";
 import * as express from "express";
-import { ROOMS } from "~shared/constants";
+import { ROOMS } from "@jog1t/ambrose-light/constants";
 import SampleRoom from "./rooms/SampleRoom";
 
 const port = Number(process.env.PORT) || 3000;
