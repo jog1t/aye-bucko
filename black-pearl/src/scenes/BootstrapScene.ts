@@ -2,8 +2,11 @@ import { Scene } from "phaser";
 import * as constants from "~constants";
 import { creators, loaders } from "~utilities";
 import { ROOMS } from "~shared/constants";
+import { UserDataController } from "~controllers";
 
 export default class Bootstrap extends Scene {
+	private userData = new UserDataController();
+
 	constructor() {
 		super(constants.SCENES.bootstrap);
 	}
@@ -32,10 +35,11 @@ export default class Bootstrap extends Scene {
 	/* eslint-enable */
 
 	private onLoadComplete() {
+		const userName = this.userData.getOrSetUserName();
 		this.sync
 			.join(ROOMS.sampleRoom)
 			.then(() => {
-				this.scene.start(constants.SCENES.sample);
+				this.scene.start(constants.SCENES.sample, { userName });
 			})
 			.catch(() => {
 				// TODO(jog1t)
