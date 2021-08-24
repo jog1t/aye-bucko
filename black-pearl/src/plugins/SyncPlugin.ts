@@ -1,11 +1,11 @@
 import * as Phaser from "phaser";
 import { Client, Room } from "colyseus.js";
-import SampleRoom from "@jog1t/whydah/src/rooms/SampleRoom";
+import { PlayersSchema } from "@jog1t/ambrose-light";
 
 export default class SyncPlugin extends Phaser.Plugins.BasePlugin {
 	private client: Client;
 
-	public currentRoom: Room<SampleRoom["state"]> | undefined;
+	private currentRoom: Room | undefined;
 
 	constructor(pluginManager: Phaser.Plugins.PluginManager) {
 		super(pluginManager);
@@ -14,7 +14,7 @@ export default class SyncPlugin extends Phaser.Plugins.BasePlugin {
 	}
 
 	public async join(roomName: string): Promise<Room> {
-		const room = await this.client.joinOrCreate<SampleRoom["state"]>(roomName);
+		const room = await this.client.joinOrCreate(roomName);
 		this.currentRoom = room;
 		return room;
 	}
@@ -23,11 +23,25 @@ export default class SyncPlugin extends Phaser.Plugins.BasePlugin {
 		if (!this.currentRoom) {
 			return undefined;
 		}
-		const room = await this.client.reconnect<SampleRoom["state"]>(
+		const room = await this.client.reconnect(
 			roomName,
 			this.currentRoom?.sessionId
 		);
 		this.currentRoom = room;
 		return room;
+	}
+
+	public getRoom(): Room {
+		if (this.currentRoom) {
+			return this.currentRoom;
+		}
+		throw new Error("There's no room that you're connected to");
+	}
+
+	public getPlayersRoom(): Room<PlayersSchema> {
+		if (this.currentRoom?.state.players) {
+			return this.currentRoom;
+		}
+		throw new Error("Invalid fetch for room with players");
 	}
 }
