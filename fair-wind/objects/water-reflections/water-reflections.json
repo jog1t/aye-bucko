@@ -1,0 +1,271 @@
+{
+	"textures": [
+		{
+			"image": "water-reflections.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 170,
+				"h": 49
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Water Reflect Big 01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 170,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 170,
+						"h": 10
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 170,
+						"h": 10
+					}
+				},
+				{
+					"filename": "Water Reflect Big 02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 170,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 170,
+						"h": 10
+					},
+					"frame": {
+						"x": 0,
+						"y": 10,
+						"w": 170,
+						"h": 10
+					}
+				},
+				{
+					"filename": "Water Reflect Big 03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 170,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 170,
+						"h": 10
+					},
+					"frame": {
+						"x": 0,
+						"y": 20,
+						"w": 170,
+						"h": 10
+					}
+				},
+				{
+					"filename": "Water Reflect Big 04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 170,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 170,
+						"h": 10
+					},
+					"frame": {
+						"x": 0,
+						"y": 30,
+						"w": 170,
+						"h": 10
+					}
+				},
+				{
+					"filename": "Water Reflect Medium 01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 53,
+						"h": 3
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 53,
+						"h": 3
+					},
+					"frame": {
+						"x": 0,
+						"y": 40,
+						"w": 53,
+						"h": 3
+					}
+				},
+				{
+					"filename": "Water Reflect Medium 02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 53,
+						"h": 3
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 53,
+						"h": 3
+					},
+					"frame": {
+						"x": 53,
+						"y": 40,
+						"w": 53,
+						"h": 3
+					}
+				},
+				{
+					"filename": "Water Reflect Medium 03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 53,
+						"h": 3
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 53,
+						"h": 3
+					},
+					"frame": {
+						"x": 106,
+						"y": 40,
+						"w": 53,
+						"h": 3
+					}
+				},
+				{
+					"filename": "Water Reflect Medium 04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 53,
+						"h": 3
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 53,
+						"h": 3
+					},
+					"frame": {
+						"x": 0,
+						"y": 43,
+						"w": 53,
+						"h": 3
+					}
+				},
+				{
+					"filename": "Water Reflect Small 01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 35,
+						"h": 3
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 35,
+						"h": 3
+					},
+					"frame": {
+						"x": 53,
+						"y": 43,
+						"w": 35,
+						"h": 3
+					}
+				},
+				{
+					"filename": "Water Reflect Small 02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 35,
+						"h": 3
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 35,
+						"h": 3
+					},
+					"frame": {
+						"x": 88,
+						"y": 43,
+						"w": 35,
+						"h": 3
+					}
+				},
+				{
+					"filename": "Water Reflect Small 03",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 35,
+						"h": 3
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 35,
+						"h": 3
+					},
+					"frame": {
+						"x": 123,
+						"y": 43,
+						"w": 35,
+						"h": 3
+					}
+				},
+				{
+					"filename": "Water Reflect Small 04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 35,
+						"h": 3
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 35,
+						"h": 3
+					},
+					"frame": {
+						"x": 0,
+						"y": 46,
+						"w": 35,
+						"h": 3
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}

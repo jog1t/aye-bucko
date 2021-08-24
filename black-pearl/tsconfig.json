@@ -15,6 +15,7 @@
 			"~controllers": ["./controllers/index.ts"],
 			"~scenes/*": ["./scenes/*"],
 			"~utilities": ["./utilities/index.ts"],
+			"~types": ["./types/index.ts"],
 			"~constants": ["./constants.ts"]
 		}
 	}
