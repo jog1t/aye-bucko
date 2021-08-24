@@ -37,9 +37,9 @@ export default class Bootstrap extends Scene {
 	private onLoadComplete() {
 		const userName = this.userData.getOrSetUserName();
 		this.sync
-			.join(ROOMS.sampleRoom)
+			.join(ROOMS.sampleRoom, userName)
 			.then(() => {
-				this.scene.start(constants.SCENES.sample, { userName });
+				this.scene.start(constants.SCENES.sample);
 			})
 			.catch(() => {
 				// TODO(jog1t)

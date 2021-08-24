@@ -19,10 +19,11 @@ export default class SampleRoom extends Room<SampleState> {
 		);
 	}
 
-	onAuth(client: Client, options: SampleRoomOptions): void {
+	onAuth(client: Client, options: SampleRoomOptions): boolean {
 		if (!options.userName || options.userName.length < 1) {
 			throw new Error("Invalid user name");
 		}
+		return true;
 	}
 
 	onJoin(client: Client, options?: SampleRoomOptions, auth?: unknown): void {

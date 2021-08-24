@@ -13,8 +13,8 @@ export default class SyncPlugin extends Phaser.Plugins.BasePlugin {
 		this.client = new Client(process.env.GAME_SERVER_URL);
 	}
 
-	public async join(roomName: string): Promise<Room> {
-		const room = await this.client.joinOrCreate(roomName);
+	public async join(roomName: string, userName: string): Promise<Room> {
+		const room = await this.client.joinOrCreate(roomName, { userName });
 		this.currentRoom = room;
 		return room;
 	}
