@@ -1,8 +1,8 @@
 import { MapSchema, Schema, type } from "@colyseus/schema";
-import { getRandomInt, PlayerState } from "@jog1t/ambrose-light";
+import { getRandomInt, PlayersSchema, PlayerState } from "@jog1t/ambrose-light";
 import Player from "./Player";
 
-export default class SampleState extends Schema {
+export default class SampleState extends Schema implements PlayersSchema {
 	@type({ map: Player })
 	players = new MapSchema<Player>();
 

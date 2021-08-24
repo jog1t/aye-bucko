@@ -1,7 +1,7 @@
 import { Schema, type } from "@colyseus/schema";
-import { PlayerState } from "@jog1t/ambrose-light";
+import { PlayerSchema } from "@jog1t/ambrose-light";
 
-export default class Player extends Schema implements PlayerState {
+export default class Player extends Schema implements PlayerSchema {
 	@type("string")
 	name = "";
 
