@@ -19,7 +19,7 @@ export default class Player extends Pirate {
 
 		scene.scene
 			.get(constants.SCENES.interface)
-			.events.on(InterfaceScene.EVENTS.CONTROL_DOWN, (controlName) => {
+			.events.on(InterfaceScene.EVENTS.CONTROL_DOWN, (controlName: string) => {
 				if (controlName === "up") {
 					this.interfaceControlsMovementVector.y = 1;
 				}
@@ -32,7 +32,7 @@ export default class Player extends Pirate {
 			});
 		scene.scene
 			.get(constants.SCENES.interface)
-			.events.on(InterfaceScene.EVENTS.CONTROL_UP, (controlName) => {
+			.events.on(InterfaceScene.EVENTS.CONTROL_UP, (controlName: string) => {
 				if (controlName === "up") {
 					this.interfaceControlsMovementVector.y = 0;
 				}
