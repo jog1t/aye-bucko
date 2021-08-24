@@ -15,6 +15,8 @@
 			"~shared": ["../../ambrose-light/index.ts"],
 
 			"~objects/*": ["./objects/*"],
+			"~objects": ["./objects/index.ts"],
+			"~controllers": ["./controllers/index.ts"],
 			"~scenes/*": ["./scenes/*"],
 			"~utilities": ["./utilities/index.ts"],
 			"~constants": ["./constants.ts"]
