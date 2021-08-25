@@ -42,3 +42,4 @@ jobs:
          - build--whydah
       steps:
          - run: echo Hello!
+         - run: docker ps
