@@ -13,9 +13,10 @@ jobs:
               node-version: '14'
          - run: npm -g install yarn
          - run: yarn install
+         - run: |
+              touch .env
+              echo "GAME_SERVER_URL=srv.aye-bycko.jogit.pl" > .env
          - run: cd black-pearl && yarn build
-           env:
-              GAME_SERVER_URL: srv.aye-bycko.jogit.pl
          - uses: actions/upload-artifact@v2
            with:
             name: black-pearl
