@@ -5,6 +5,8 @@ on: push
 jobs:
    build--black-pearl:
       name: Build Black Pearl (game frontend)
+      env:
+         GAME_SERVER_URL: srv.aye-bycko.jogit.pl
       runs-on: self-hosted
       steps:
          - uses: actions/checkout@v2
@@ -41,5 +43,5 @@ jobs:
          - build--black-pearl
          - build--whydah
       steps:
-         - run: echo Hello!
-         - run: docker ps
+         - uses: actions/download-artifact@v2
+         - run: docker-compose up -d

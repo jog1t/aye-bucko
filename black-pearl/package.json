@@ -7,7 +7,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "webpack serve",
-		"build": "webpack --mode=production"
+		"build": "webpack --mode=production",
+		"start": "http-server -p 8081"
 	},
 	"husky": {
 		"hooks": {
@@ -30,6 +31,7 @@
 		"@jog1t/fair-wind": "1.0.0",
 		"colyseus.js": "^0.14.12",
 		"dotenv-webpack": "^7.0.2",
+		"http-server": "^13.0.1",
 		"lodash": "^4.17.21",
 		"phaser": "^3.53.1",
 		"type-fest": "^2.1.0"
