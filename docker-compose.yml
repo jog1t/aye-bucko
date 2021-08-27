@@ -1,7 +1,7 @@
 version: "3"
 services:
    black-pearl:
-      build: black-pearl
+      image: aye-bucko/black-pearl
       links:
          - whydah
       networks:
@@ -15,7 +15,7 @@ services:
          - traefik.docker.network=web
 
    whydah:
-      build: .
+      image: aye-bucko/whydah
       networks:
          - web
          - internal
