@@ -40,6 +40,6 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({ template: "./src/index.html" }),
-		new DotEnv(),
+		new DotEnv({ debug: true, systemvars: true }),
 	],
 };
