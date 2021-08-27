@@ -52,4 +52,5 @@ jobs:
            with:
              name: 'black-pearl'
              path: black-pearl/build
-         - run: docker-compose up -d --force-recreate --no-cache
+         - run: docker-compose down
+         - run: docker-compose up -d --force-recreate
