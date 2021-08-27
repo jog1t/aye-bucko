@@ -4,12 +4,14 @@ import { createServer } from "http";
 import { monitor } from "@colyseus/monitor";
 import express from "express";
 import { ROOMS } from "@jog1t/ambrose-light";
+import cors from "cors";
 import SampleRoom from "./rooms/SampleRoom";
 
 const port = Number(process.env.PORT) || 3000;
 
 async function bootstrap() {
 	const app = express();
+	app.use(cors({ origin: "http://aye-bucko.jogit.pl" }));
 	app.use(express.json());
 	app.use("/monitor", monitor());
 
