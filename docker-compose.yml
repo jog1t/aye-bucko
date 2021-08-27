@@ -2,11 +2,33 @@ version: "3"
 services:
    black-pearl:
       build: black-pearl
-      depends_on:
+      links:
          - whydah
+      networks:
+         - web
+         - internal
+      ports:
+         - "9000:80"
       labels:
-         - "traefik.http.routers.black-pearl.rule=Host(`aye-bucko.jogit.pl`)"
+         - traefik.enable=true
+         - traefik.http.routers.black-pearl.rule=Host(`aye-bucko.jogit.pl`)
+         - traefik.docker.network=web
+
    whydah:
       build: .
+      networks:
+         - web
+         - internal
+      ports:
+         - "9001:3000"
       labels:
-         - "traefik.http.routers.whydah.rule=Host(`srv.aye-bucko.jogit.pl`)"
+         - traefik.enable=true
+         - traefik.http.routers.whydah.rule=Host(`srv.aye-bucko.jogit.pl`)
+         - traefik.docker.network=web
+
+
+networks:
+   web:
+      external: true
+   internal:
+      external: false
