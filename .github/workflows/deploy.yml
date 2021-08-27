@@ -5,8 +5,6 @@ on: push
 jobs:
    build--black-pearl:
       name: Build Black Pearl (game frontend)
-      env:
-         GAME_SERVER_URL: srv.aye-bycko.jogit.pl
       runs-on: self-hosted
       steps:
          - uses: actions/checkout@v2
@@ -16,6 +14,8 @@ jobs:
          - run: npm -g install yarn
          - run: yarn install
          - run: cd black-pearl && yarn build
+           env:
+              GAME_SERVER_URL: srv.aye-bycko.jogit.pl
          - uses: actions/upload-artifact@v2
            with:
             name: black-pearl
