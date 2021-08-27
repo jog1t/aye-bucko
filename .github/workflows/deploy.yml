@@ -34,7 +34,7 @@ jobs:
         - uses: actions/upload-artifact@v2
           with:
              name: whydah
-             path: whydah
+             path: whydah/build
 
    deploy:
       name: Deploy
@@ -44,4 +44,11 @@ jobs:
          - build--whydah
       steps:
          - uses: actions/download-artifact@v2
+           with:
+             name: 'whydah'
+             path: whydah/build
+         - uses: actions/download-artifact@v2
+           with:
+             name: 'black-pearl'
+             path: black-pearl/build
          - run: docker-compose up -d
