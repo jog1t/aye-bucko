@@ -5,8 +5,8 @@ services:
       depends_on:
          - whydah
       labels:
-         - "traefik.http.routers.whoami.rule=Host(`aye-bucko.jogit.pl`)"
+         - "traefik.http.routers.black-pearl.rule=Host(`aye-bucko.jogit.pl`)"
    whydah:
       build: .
       labels:
-         - "traefik.http.routers.whoami.rule=Host(`srv.aye-bucko.jogit.pl`)"
+         - "traefik.http.routers.whydah.rule=Host(`srv.aye-bucko.jogit.pl`)"
