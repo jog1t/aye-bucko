@@ -16,8 +16,8 @@ jobs:
          - run: |
               cd black-pearl
               echo "GAME_SERVER_URL=ws://srv.aye-bycko.jogit.pl" > .env
-         - run: cd black-pearl && yarn build .
-         - run: cd black-pearl && docker build -t aye-bucko/black-pearl
+         - run: cd black-pearl && yarn build
+         - run: cd black-pearl && docker build -t aye-bucko/black-pearl .
 
    build--whydah:
       name: Build Whydah (game backend)
