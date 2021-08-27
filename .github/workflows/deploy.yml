@@ -39,13 +39,4 @@ jobs:
          - build--black-pearl
          - build--whydah
       steps:
-         - uses: actions/download-artifact@v2
-           with:
-             name: 'whydah'
-             path: whydah/build
-         - uses: actions/download-artifact@v2
-           with:
-             name: 'black-pearl'
-             path: black-pearl/build
-         - run: docker-compose build --no-cache
          - run: docker-compose up -d --force-recreate
