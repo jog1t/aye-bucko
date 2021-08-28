@@ -6,7 +6,7 @@ jobs:
    build--black-pearl:
       name: Build Black Pearl (game frontend)
       env:
-         GAME_SERVER_URL: ws://srv.aye-bycko.jogit.pl
+         GAME_SERVER_URL: ws://srv.aye-bucko.jogit.pl
          GAME_VERSION: ${{ github.sha }}
       runs-on: self-hosted
       steps:
