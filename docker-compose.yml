@@ -12,6 +12,8 @@ services:
       labels:
          - traefik.enable=true
          - traefik.http.routers.black-pearl.rule=Host(`aye-bucko.jogit.pl`)
+         # - traefik.http.routers.black-pearl.entrypoints=websecure
+         - traefik.http.routers.black-pearl.tls.certresolver=tls-challenge
          - traefik.docker.network=web
 
    whydah:
@@ -24,6 +26,7 @@ services:
       labels:
          - traefik.enable=true
          - traefik.http.routers.whydah.rule=Host(`srv.aye-bucko.jogit.pl`)
+         - traefik.http.routers.black-pearl.tls.certresolver=tls-challenge
          - traefik.docker.network=web
 
 
