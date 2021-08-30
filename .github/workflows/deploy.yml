@@ -19,7 +19,7 @@ jobs:
          - determine-config
       steps:
          - name: Get result
-           run: echo "FH ${{steps.config.outputs.frontendHost}} BH ${{steps.config.outputs.backendHost}} BN ${{steps.config.outputs.branchName}}"
+           run: echo "FFF ${{steps.config.outputs.result}} FH ${{steps.config.outputs.frontendHost}} BH ${{steps.config.outputs.backendHost}} BN ${{steps.config.outputs.branchName}}"
 
 #   build--black-pearl:
 #      name: Build Black Pearl (game frontend)
