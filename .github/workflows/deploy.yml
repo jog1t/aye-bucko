@@ -21,8 +21,8 @@ jobs:
       needs:
          - determine-config
       steps:
-         - name: Get result
-           run: echo "FFF ${{needs.determine-config.outputs.config}}"
+         - run: echo "FFF ${{needs.determine-config.outputs.config}}"
+         - run: echo "FFF ${{needs.determine-config.outputs.config.branchName}}"
 
 #   build--black-pearl:
 #      name: Build Black Pearl (game frontend)
