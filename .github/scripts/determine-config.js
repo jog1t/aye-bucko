@@ -1,7 +1,7 @@
 const MAIN_DOMAIN = "aye-bucko.pl";
 
 module.exports = ({ context }) => {
-  const [branchName] = context.split("/").reverse();
+  const [branchName] = context.ref.split("/").reverse();
 
   const frontendHost =
     branchName === "master" ? `${branchName}.${MAIN_DOMAIN}` : MAIN_DOMAIN;
