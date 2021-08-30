@@ -11,9 +11,15 @@ jobs:
          - uses: actions/github-script@v4
            id: config
            with:
-              script: |
-                const script = require('./.github/scripts/determine-config.js')
-                console.log(script({github, context, core, glob, io, exec}))
+              script: return require('./.github/scripts/determine-config.js')({github, context, core, glob, io, exec})
+   test:
+      name: Test
+      runs-on: self-hosted
+      needs:
+         - determine-config
+      steps:
+         - name: Get result
+           run: echo "FH ${{steps.config.outputs.frontendHost}} BH ${{steps.config.outputs.backendHost}} BN ${{steps.config.outputs.branchName}}"
 
 #   build--black-pearl:
 #      name: Build Black Pearl (game frontend)
