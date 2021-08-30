@@ -62,6 +62,7 @@ jobs:
          BACKEND_HOST: ${{fromJson(needs.config.outputs.config).backendHost}}
          BRANCH_NAME: ${{fromJson(needs.config.outputs.config).branchName}}
       needs:
+         - config
          - build--black-pearl
          - build--whydah
       steps:
