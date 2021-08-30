@@ -5,7 +5,7 @@ services:
       links:
          - whydah
       networks:
-         - reverse_proxy_default
+         - proxy
       ports:
          - "443:80"
       labels:
@@ -18,7 +18,7 @@ services:
    whydah:
       image: aye-bucko/whydah:${BRANCH_NAME}
       networks:
-         - reverse_proxy_default
+         - proxy
       ports:
          - "443:3000"
       labels:
