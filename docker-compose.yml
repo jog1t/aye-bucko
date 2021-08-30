@@ -27,3 +27,7 @@ services:
          - traefik.http.routers.whydah.entrypoints=websecure
          - traefik.http.routers.whydah.tls.certresolver=tls-challenge
          - traefik.docker.network=proxy
+
+networks:
+   proxy:
+      external: false
