@@ -15,49 +15,50 @@ jobs:
            with:
               script: return require('./.github/scripts/determine-config.js')({github, context, core, glob, io, exec})
               result-encoding: json
-   test:
-      name: Test
+
+   build--black-pearl:
+      name: Build Black Pearl (game frontend)
+      env:
+         GAME_SERVER_URL: ${{fromJson(needs.config.outputs.config).backendAddress}}
+         BRANCH_NAME: ${{fromJson(needs.config.outputs.config).branchName}}
+         GAME_VERSION: ${{ github.sha }}
       runs-on: self-hosted
       needs:
          - config
       steps:
-         - run: echo "FFF ${{needs.config.outputs.config}}"
-         - run: echo "FFF ${{fromJson(needs.config.outputs.config).branchName}}"
+         - uses: actions/checkout@v2
+         - uses: actions/setup-node@v2
+           with:
+              node-version: '14'
+         - run: npm -g install yarn
+         - run: yarn install
+         - run: cd black-pearl && yarn build
+         - run: cd black-pearl && docker build -t aye-bucko/black-pearl:${{ env.BRANCH_NAME }} .
 
-#   build--black-pearl:
-#      name: Build Black Pearl (game frontend)
-#      env:
-#         GAME_SERVER_URL: ws://srv.aye-bucko.jogit.pl
-#         GAME_VERSION: ${{ github.sha }}
-#      runs-on: self-hosted
-#      steps:
-#         - uses: actions/checkout@v2
-#         - uses: actions/setup-node@v2
-#           with:
-#              node-version: '14'
-#         - run: npm -g install yarn
-#         - run: yarn install
-#         - run: cd black-pearl && yarn build
-#         - run: cd black-pearl && docker build -t aye-bucko/black-pearl .
-#
-#   build--whydah:
-#      name: Build Whydah (game backend)
-#      runs-on: self-hosted
-#      steps:
-#        - uses: actions/checkout@v2
-#        - uses: actions/setup-node@v2
-#          with:
-#             node-version: '14'
-#        - run: npm -g install yarn
-#        - run: yarn install
-#        - run: cd whydah && yarn build
-#        - run: docker build -t aye-bucko/whydah .
-#
-#   deploy:
-#      name: Deploy
-#      runs-on: self-hosted
-#      needs:
-#         - build--black-pearl
-#         - build--whydah
-#      steps:
-#         - run: docker-compose up -d --force-recreate
+   build--whydah:
+      name: Build Whydah (game backend)
+      runs-on: self-hosted
+      needs:
+         - config
+      env:
+         FRONTEND_HOST: ${{fromJson(needs.config.outputs.config).frontendHost}}
+         BACKEND_HOST: ${{fromJson(needs.config.outputs.config).backendHost}}
+         BRANCH_NAME: ${{fromJson(needs.config.outputs.config).branchName}}
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+             node-version: '14'
+        - run: npm -g install yarn
+        - run: yarn install
+        - run: cd whydah && yarn build
+        - run: docker build -t aye-bucko/whydah:${{ env.BRANCH_NAME }} .
+
+   deploy:
+      name: Deploy
+      runs-on: self-hosted
+      needs:
+         - build--black-pearl
+         - build--whydah
+      steps:
+         - run: docker-compose up -d --force-recreate
