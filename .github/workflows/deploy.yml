@@ -3,7 +3,7 @@ name: Deploy game
 on: push
 
 jobs:
-   determine-config:
+   config:
       name: Determine config values
       runs-on: self-hosted
       outputs:
@@ -19,10 +19,10 @@ jobs:
       name: Test
       runs-on: self-hosted
       needs:
-         - determine-config
+         - config
       steps:
-         - run: echo "FFF ${{needs.determine-config.outputs.config}}"
-         - run: echo "FFF ${{needs.determine-config.outputs.config.branchName}}"
+         - run: echo "FFF ${{needs.config.outputs.config}}"
+         - run: echo "FFF ${{fromJson(needs.config.outputs.config.branchName)}}"
 
 #   build--black-pearl:
 #      name: Build Black Pearl (game frontend)
