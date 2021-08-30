@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
-const DotEnv = require("dotenv-webpack");
 const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
@@ -35,5 +34,4 @@ module.exports = {
 		filename: "index.js",
 		path: path.resolve(__dirname, "build"),
 	},
-	plugins: [new DotEnv()],
 };
