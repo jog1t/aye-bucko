@@ -57,6 +57,10 @@ jobs:
    deploy:
       name: Deploy
       runs-on: self-hosted
+      env:
+         FRONTEND_HOST: ${{fromJson(needs.config.outputs.config).frontendHost}}
+         BACKEND_HOST: ${{fromJson(needs.config.outputs.config).backendHost}}
+         BRANCH_NAME: ${{fromJson(needs.config.outputs.config).branchName}}
       needs:
          - build--black-pearl
          - build--whydah

@@ -5,7 +5,7 @@ services:
       links:
          - whydah
       networks:
-         - reverse-proxy
+         - reverse_proxy_default
       ports:
          - "443:80"
       labels:
@@ -13,12 +13,12 @@ services:
          - traefik.http.routers.black-pearl.rule=Host(`${FRONTEND_HOST}`)
          - traefik.http.routers.black-pearl.entrypoints=websecure
          - traefik.http.routers.black-pearl.tls.certresolver=tls-challenge
-         - traefik.docker.network=reverse-proxy
+         - traefik.docker.network=reverse_proxy_default
 
    whydah:
       image: aye-bucko/whydah:${BRANCH_NAME}
       networks:
-         - reverse-proxy
+         - reverse_proxy_default
       ports:
          - "443:3000"
       labels:
@@ -26,4 +26,4 @@ services:
          - traefik.http.routers.whydah.rule=Host(`${BACKEND_HOST}`)
          - traefik.http.routers.whydah.entrypoints=websecure
          - traefik.http.routers.whydah.tls.certresolver=tls-challenge
-         - traefik.docker.network=reverse-proxy
+         - traefik.docker.network=reverse_proxy_default
