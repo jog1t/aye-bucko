@@ -22,7 +22,7 @@ jobs:
          - config
       steps:
          - run: echo "FFF ${{needs.config.outputs.config}}"
-         - run: echo "FFF ${{fromJson(needs.config.outputs.config.branchName)}}"
+         - run: echo "FFF ${{fromJson(needs.config.outputs.config).branchName}}"
 
 #   build--black-pearl:
 #      name: Build Black Pearl (game frontend)
