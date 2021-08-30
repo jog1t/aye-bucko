@@ -3,40 +3,52 @@ name: Deploy game
 on: push
 
 jobs:
-   build--black-pearl:
-      name: Build Black Pearl (game frontend)
-      env:
-         GAME_SERVER_URL: ws://srv.aye-bucko.jogit.pl
-         GAME_VERSION: ${{ github.sha }}
+   determine-config:
+      name: Determine config values
       runs-on: self-hosted
       steps:
          - uses: actions/checkout@v2
-         - uses: actions/setup-node@v2
+         - uses: actions/github-script@v4
+           id: config
            with:
-              node-version: '14'
-         - run: npm -g install yarn
-         - run: yarn install
-         - run: cd black-pearl && yarn build
-         - run: cd black-pearl && docker build -t aye-bucko/black-pearl .
+              script: |
+                const script = require('./.github/scripts/determine-config.js')
+                console.log(script({github, context, core, glob, io, exec}))
 
-   build--whydah:
-      name: Build Whydah (game backend)
-      runs-on: self-hosted
-      steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-node@v2
-          with:
-             node-version: '14'
-        - run: npm -g install yarn
-        - run: yarn install
-        - run: cd whydah && yarn build
-        - run: docker build -t aye-bucko/whydah .
-
-   deploy:
-      name: Deploy
-      runs-on: self-hosted
-      needs:
-         - build--black-pearl
-         - build--whydah
-      steps:
-         - run: docker-compose up -d --force-recreate
+#   build--black-pearl:
+#      name: Build Black Pearl (game frontend)
+#      env:
+#         GAME_SERVER_URL: ws://srv.aye-bucko.jogit.pl
+#         GAME_VERSION: ${{ github.sha }}
+#      runs-on: self-hosted
+#      steps:
+#         - uses: actions/checkout@v2
+#         - uses: actions/setup-node@v2
+#           with:
+#              node-version: '14'
+#         - run: npm -g install yarn
+#         - run: yarn install
+#         - run: cd black-pearl && yarn build
+#         - run: cd black-pearl && docker build -t aye-bucko/black-pearl .
+#
+#   build--whydah:
+#      name: Build Whydah (game backend)
+#      runs-on: self-hosted
+#      steps:
+#        - uses: actions/checkout@v2
+#        - uses: actions/setup-node@v2
+#          with:
+#             node-version: '14'
+#        - run: npm -g install yarn
+#        - run: yarn install
+#        - run: cd whydah && yarn build
+#        - run: docker build -t aye-bucko/whydah .
+#
+#   deploy:
+#      name: Deploy
+#      runs-on: self-hosted
+#      needs:
+#         - build--black-pearl
+#         - build--whydah
+#      steps:
+#         - run: docker-compose up -d --force-recreate
