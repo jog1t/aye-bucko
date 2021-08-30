@@ -6,12 +6,9 @@ services:
          - whydah
       networks:
          - proxy
-      ports:
-         - "443:80"
       labels:
          - traefik.enable=true
          - traefik.http.routers.black-pearl.rule=Host(`${FRONTEND_HOST}`)
-         - traefik.http.routers.black-pearl.entrypoints=websecure
          - traefik.http.routers.black-pearl.tls.certresolver=tls-challenge
          - traefik.docker.network=proxy
 
@@ -19,8 +16,6 @@ services:
       image: aye-bucko/whydah:${BRANCH_NAME}
       networks:
          - proxy
-      ports:
-         - "443:3000"
       labels:
          - traefik.enable=true
          - traefik.http.routers.whydah.rule=Host(`${BACKEND_HOST}`)
