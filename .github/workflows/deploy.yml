@@ -61,4 +61,4 @@ jobs:
          - build--black-pearl
          - build--whydah
       steps:
-         - run: docker-compose up -d --force-recreate
+         - run: docker-compose up -d
