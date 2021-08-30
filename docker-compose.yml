@@ -1,37 +1,29 @@
 version: "3"
 services:
    black-pearl:
-      image: aye-bucko/black-pearl
+      image: aye-bucko/black-pearl:${BRANCH_NAME}
       links:
          - whydah
       networks:
-         - web
-         - internal
+         - reverse-proxy
       ports:
-         - "9000:80"
+         - "443:80"
       labels:
          - traefik.enable=true
-         - traefik.http.routers.black-pearl.rule=Host(`aye-bucko.jogit.pl`)
-         # - traefik.http.routers.black-pearl.entrypoints=websecure
+         - traefik.http.routers.black-pearl.rule=Host(`${FRONTEND_HOST}`)
+         - traefik.http.routers.black-pearl.entrypoints=websecure
          - traefik.http.routers.black-pearl.tls.certresolver=tls-challenge
-         - traefik.docker.network=web
+         - traefik.docker.network=reverse-proxy
 
    whydah:
-      image: aye-bucko/whydah
+      image: aye-bucko/whydah:${BRANCH_NAME}
       networks:
-         - web
-         - internal
+         - reverse-proxy
       ports:
-         - "9001:3000"
+         - "443:3000"
       labels:
          - traefik.enable=true
-         - traefik.http.routers.whydah.rule=Host(`srv.aye-bucko.jogit.pl`)
-         - traefik.http.routers.black-pearl.tls.certresolver=tls-challenge
-         - traefik.docker.network=web
-
-
-networks:
-   web:
-      external: true
-   internal:
-      external: false
+         - traefik.http.routers.whydah.rule=Host(`${BACKEND_HOST}`)
+         - traefik.http.routers.whydah.entrypoints=websecure
+         - traefik.http.routers.whydah.tls.certresolver=tls-challenge
+         - traefik.docker.network=reverse-proxy
