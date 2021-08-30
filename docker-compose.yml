@@ -4,8 +4,6 @@ services:
       image: aye-bucko/black-pearl:${BRANCH_NAME}
       links:
          - whydah
-      networks:
-         - proxy
       labels:
          - traefik.enable=true
          - traefik.http.routers.black-pearl.rule=Host(`${FRONTEND_HOST}`)
@@ -14,8 +12,6 @@ services:
 
    whydah:
       image: aye-bucko/whydah:${BRANCH_NAME}
-      networks:
-         - proxy
       labels:
          - traefik.enable=true
          - traefik.http.routers.whydah.rule=Host(`${BACKEND_HOST}`)
@@ -23,5 +19,6 @@ services:
          - traefik.docker.network=proxy
 
 networks:
-   proxy:
-      external: true
+   default:
+      external:
+         name: proxy
