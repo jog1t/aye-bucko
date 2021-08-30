@@ -10,7 +10,7 @@ module.exports = ({ context }) => {
     branchName === "master"
       ? MAIN_BE_DOMAIN
       : `srv.${branchName}.${MAIN_DOMAIN}`;
-  const backendAddress = `ws://${backendHost}`;
+  const backendAddress = `wss://${backendHost}`;
 
   return { branchName, frontendHost, backendHost, backendAddress };
 };
