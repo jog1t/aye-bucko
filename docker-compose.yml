@@ -13,7 +13,7 @@ services:
          - traefik.http.routers.black-pearl.rule=Host(`${FRONTEND_HOST}`)
          - traefik.http.routers.black-pearl.entrypoints=websecure
          - traefik.http.routers.black-pearl.tls.certresolver=tls-challenge
-         - traefik.docker.network=reverse_proxy_default
+         - traefik.docker.network=proxy
 
    whydah:
       image: aye-bucko/whydah:${BRANCH_NAME}
@@ -26,4 +26,4 @@ services:
          - traefik.http.routers.whydah.rule=Host(`${BACKEND_HOST}`)
          - traefik.http.routers.whydah.entrypoints=websecure
          - traefik.http.routers.whydah.tls.certresolver=tls-challenge
-         - traefik.docker.network=reverse_proxy_default
+         - traefik.docker.network=proxy
