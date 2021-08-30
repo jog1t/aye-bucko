@@ -1,5 +1,5 @@
-const MAIN_DOMAIN = "aye-bucko.pl";
-const MAIN_BE_DOMAIN = "src.aye-bucko.pl";
+const MAIN_DOMAIN = "aye-bucko.jogit.pl";
+const MAIN_BE_DOMAIN = "src.aye-bucko.jogit.pl";
 
 module.exports = ({ context }) => {
   const [branchName] = context.ref.split("/").reverse();

@@ -19,7 +19,6 @@ services:
       labels:
          - traefik.enable=true
          - traefik.http.routers.whydah.rule=Host(`${BACKEND_HOST}`)
-         - traefik.http.routers.whydah.entrypoints=websecure
          - traefik.http.routers.whydah.tls.certresolver=tls-challenge
          - traefik.docker.network=proxy
 

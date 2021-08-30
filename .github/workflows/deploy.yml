@@ -66,4 +66,4 @@ jobs:
          - build--black-pearl
          - build--whydah
       steps:
-         - run: docker-compose up -d
+         - run: docker-compose --project-name ${{env.BRANCH_NAME}} up -d --remove-orphans
