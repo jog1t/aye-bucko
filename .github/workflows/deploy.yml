@@ -7,7 +7,7 @@ jobs:
       name: Determine config values
       runs-on: self-hosted
       outputs:
-         config: ${{ steps.set-config.outputs.result }}
+         config: ${{steps.set-config.outputs.result}}
       steps:
          - uses: actions/checkout@v2
          - uses: actions/github-script@v4
@@ -15,6 +15,7 @@ jobs:
            with:
               script: return require('./.github/scripts/determine-config.js')({github, context, core, glob, io, exec})
          - run: echo "${{steps.set-config.outputs.result}}"
+         - run: echo "${{steps.set-config.outputs.result.branchName}}"
    test:
       name: Test
       runs-on: self-hosted
@@ -22,7 +23,7 @@ jobs:
          - determine-config
       steps:
          - name: Get result
-           run: echo "FFF ${{needs.determine-config.config}}"
+           run: echo "FFF ${{needs.determine-config.outputs.config}}"
 
 #   build--black-pearl:
 #      name: Build Black Pearl (game frontend)
