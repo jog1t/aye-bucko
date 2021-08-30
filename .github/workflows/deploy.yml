@@ -7,13 +7,14 @@ jobs:
       name: Determine config values
       runs-on: self-hosted
       outputs:
-         config: ${{fromJson(steps.set-config.outputs.result)}}
+         config: ${{steps.set-config.outputs.result}}
       steps:
          - uses: actions/checkout@v2
          - uses: actions/github-script@v4
            id: set-config
            with:
               script: return require('./.github/scripts/determine-config.js')({github, context, core, glob, io, exec})
+              result-encoding: json
    test:
       name: Test
       runs-on: self-hosted
