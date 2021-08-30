@@ -6,6 +6,8 @@ jobs:
    determine-config:
       name: Determine config values
       runs-on: self-hosted
+      outputs:
+         config: ${{ steps.config.outputs.result }}
       steps:
          - uses: actions/checkout@v2
          - uses: actions/github-script@v4
@@ -19,7 +21,7 @@ jobs:
          - determine-config
       steps:
          - name: Get result
-           run: echo "FFF ${{steps.config.outputs.result}} FH ${{steps.config.outputs.frontendHost}} BH ${{steps.config.outputs.backendHost}} BN ${{steps.config.outputs.branchName}}"
+           run: echo "FFF ${{needs.determine-config.config}}"
 
 #   build--black-pearl:
 #      name: Build Black Pearl (game frontend)
