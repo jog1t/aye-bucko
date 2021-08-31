@@ -26,7 +26,7 @@ jobs:
          BACKEND_HOST: ${{fromJson(needs.config.outputs.config).backendHost}}
          BRANCH_NAME: ${{fromJson(needs.config.outputs.config).branchName}}
       steps:
-         - run: docker-compose --project-name ${{env.BRANCH_NAME}} down -d
+         - run: docker-compose --project-name ${{env.BRANCH_NAME}} down --remove-orphans
          - run: docker rmi aye-bucko/black-pearl:${{env.BRANCH_NAME}}
          - run: docker rmi aye-bucko/whydah:${{env.BRANCH_NAME}}
          - run: yes | docker image prune -a
