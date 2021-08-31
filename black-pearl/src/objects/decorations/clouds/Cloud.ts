@@ -6,9 +6,9 @@ export type ScrollConfig = {
 };
 
 export type BoundingBox = {
-	x?: number;
-	y?: number;
-	polygon?: Phaser.Types.Math.Vector2Like[];
+	x: number;
+	y: number;
+	polygon: Phaser.Types.Math.Vector2Like[];
 };
 
 export default abstract class Cloud extends Phaser.GameObjects.Container {

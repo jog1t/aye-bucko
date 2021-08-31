@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"outDir": "./build/",
+		"module": "commonjs",
+		"target": "es6",
+		"allowJs": true,
+		"resolveJsonModule": false,
+		"moduleResolution": "node",
+		"strict": true,
+		"baseUrl": "./src",
+		"experimentalDecorators": true
+	}
+}
