@@ -1,5 +1,5 @@
 import Game from "./Game";
-import "~shared/types/assets";
+import "@jog1t/ambrose-light/types/assets";
 
 window.addEventListener("load", () => {
 	const style = window.document.createElement("style");

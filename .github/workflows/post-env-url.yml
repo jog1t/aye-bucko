@@ -1,0 +1,36 @@
+name: Post Enviroment URL
+on:
+   pull_request_target:
+      types: [opened, reopened]
+
+
+jobs:
+   config:
+      name: Determine config values
+      runs-on: self-hosted
+      outputs:
+         config: ${{steps.set-config.outputs.result}}
+      steps:
+         -  uses: actions/checkout@v2
+         -  uses: actions/github-script@v4
+            id: set-config
+            with:
+               script: return require('./.github/scripts/determine-config.js')({github, context, core, glob, io, exec})
+               result-encoding: json
+
+   post-url:
+      name: Post enviroment URL
+      runs-on: self-hosted
+      needs:
+         - config
+      env:
+         FRONTEND_HOST: ${{fromJson(needs.config.outputs.config).frontendHost}}
+         BACKEND_HOST: ${{fromJson(needs.config.outputs.config).backendHost}}
+      steps:
+         - uses: actions/checkout@v2
+         - run: echo "${{fromJson(needs.config.outputs.config)}}"
+         - uses: actions/github-script@v4
+           with:
+               script: return await require('./.github/scripts/post-env-url.js')({github, context, core, glob, io, exec})
+               result-encoding: json
+

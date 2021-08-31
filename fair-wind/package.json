@@ -1,0 +1,16 @@
+{
+  "name": "@jog1t/fair-wind",
+  "version": "1.0.0",
+  "main": "",
+  "author": "Kacper Wojciechowski",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+  },
+  "prettier": {
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

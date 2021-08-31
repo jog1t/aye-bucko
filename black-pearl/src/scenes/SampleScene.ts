@@ -1,66 +1,78 @@
 import * as Phaser from "phaser";
+import { isDev } from "@jog1t/ambrose-light";
 import * as constants from "~constants";
-import { isDev } from "~shared";
-import Player from "~objects/Player";
-import ForegroundPalm from "~objects/decorations/ForegroundPalm";
-import BackgroundPalm from "~objects/decorations/BackgroundPalm";
-import WaterReflection from "~objects/decorations/WaterReflection";
-import BigCloud from "~objects/decorations/clouds/BigCloud";
-import SmallCloud, { CloudType } from "~objects/decorations/clouds/SmallCloud";
+import {
+	CloudType,
+	SmallCloud,
+	BigCloud,
+	ForegroundPalm,
+	BackgroundPalm,
+	WaterReflection,
+} from "~objects/decorations";
+import { NetworkPlayersGroup } from "~objects/network";
+import { guards } from "~utilities";
 
-function objectTypeIsCloudType(tileType): tileType is CloudType {
-	return Object.values(CloudType).includes(tileType);
+function objectTypeIsCloudType(tileType: string): tileType is CloudType {
+	return Object.values(CloudType).includes(tileType as CloudType);
 }
 
 export default class SampleScene extends Phaser.Scene {
-	private map: Phaser.Tilemaps.Tilemap;
-
 	private objectsNeedsUpdate: Set<Phaser.GameObjects.GameObject> = new Set();
 
-	private player: Player;
+	private networkController;
 
 	constructor() {
 		super(constants.SCENES.sample);
+		this.networkController = new NetworkPlayersGroup(this);
 	}
 
 	create(): void {
-		this.player = new Player(this, 300, 300);
-		this.player.setDepth(constants.DEPTHS.player);
+		this.cameras.main.setBackgroundColor("#33333e");
+		this.cameras.main.roundPixels = true;
 
 		const { terrain } = this.createTileMap();
-		this.physics.add.collider(terrain, this.player);
-		this.cameras.main.zoomTo(2, 500, Phaser.Math.Easing.Cubic.InOut);
-		this.cameras.main.startFollow(this.player);
+		this.add.existing(this.networkController);
+		this.networkController.on(
+			NetworkPlayersGroup.EVENTS.ENTITY_ADD,
+			({ entity, isCurrentPlayer }) => {
+				if (isCurrentPlayer) {
+					this.cameras.main.startFollow(entity);
+					this.cameras.main.zoomTo(2, 500, Phaser.Math.Easing.Cubic.InOut);
+				}
+			}
+		);
+
+		this.physics.add.collider(terrain, this.networkController);
+		this.networkController.init();
 
 		this.scene.run(constants.SCENES.interface);
 	}
 
 	private createTileMap(): { terrain: Phaser.Tilemaps.TilemapLayer } {
-		this.cameras.main.setBackgroundColor("#33333e");
-		this.map = this.make.tilemap({
+		const map = this.make.tilemap({
 			key: constants.TILE_MAPS.sample,
 		});
-		const terrainTileset = this.map.addTilesetImage(
+		const terrainTileset = map.addTilesetImage(
 			"island-terrain",
 			constants.TILE_SETS.island.terrain
 		);
-		const detailsTileset = this.map.addTilesetImage(
+		const detailsTileset = map.addTilesetImage(
 			"island-details",
 			constants.TILE_SETS.island.details
 		);
-		const backgroundTileset = this.map.addTilesetImage(
+		const backgroundTileset = map.addTilesetImage(
 			"island-background",
 			constants.TILE_SETS.island.background
 		);
 
-		const background = this.map.createLayer("Background", backgroundTileset);
+		const background = map.createLayer("Background", backgroundTileset);
 		background.setScrollFactor(1, 1.05);
 		background.setDepth(constants.DEPTHS.background);
-		const grass = this.map.createLayer("Grass", detailsTileset);
+		const grass = map.createLayer("Grass", detailsTileset);
 		grass.setDepth(constants.DEPTHS.decorations);
-		const terrain = this.map.createLayer("Terrain", terrainTileset);
+		const terrain = map.createLayer("Terrain", terrainTileset);
 		terrain.setDepth(constants.DEPTHS.terrain);
-		const palms = this.map.createLayer("Palms", detailsTileset);
+		const palms = map.createLayer("Palms", detailsTileset);
 		palms.setDepth(constants.DEPTHS.decorations);
 
 		terrain.setCollisionByProperty({ collides: true });
@@ -76,7 +88,7 @@ export default class SampleScene extends Phaser.Scene {
 			});
 		}
 
-		const utilitiesLayer = this.map.getObjectLayer("Utilities");
+		const utilitiesLayer = map.getObjectLayer("Utilities");
 		const boundingPolygon = utilitiesLayer.objects.find(
 			(tile) => tile.type === "boundingPolygon"
 		);
@@ -86,17 +98,20 @@ export default class SampleScene extends Phaser.Scene {
 		);
 
 		const scrollConfig = {
-			startX: boundingBox.x,
-			width: boundingBox.width,
+			startX: boundingBox?.x ?? 0,
+			width: boundingBox?.width ?? 1000,
 		};
-		this.map.getObjectLayer("Animated").objects.forEach((object) => {
+		map.getObjectLayer("Animated").objects.forEach((object) => {
+			if (!guards.objectHasCoords(object)) {
+				return;
+			}
+
 			if (object.type === "palm") {
 				const sprite = new ForegroundPalm(this, object.x, object.y);
 				sprite.setDepth(constants.DEPTHS.decorations);
 				sprite.x += sprite.width / 2 - 5;
 				sprite.y -= sprite.height / 2;
 				this.add.existing(sprite);
-				this.physics.add.collider(sprite, this.player);
 			} else if (object.type === "backgroundPalm") {
 				const sprite = new BackgroundPalm(this, object.x, object.y);
 				sprite.setDepth(constants.DEPTHS.backgroundDecorations);
@@ -106,7 +121,12 @@ export default class SampleScene extends Phaser.Scene {
 				const sprite = new WaterReflection(this, "big", object.x, object.y);
 				this.add.existing(sprite);
 				sprite.setScrollFactor(1, 1.05);
-			} else if (object.type === "bigCloud") {
+			} else if (
+				object.type === "bigCloud" &&
+				boundingPolygon &&
+				guards.objectHasCoords(boundingPolygon) &&
+				guards.objectHasPolygon(boundingPolygon)
+			) {
 				const sprite = new BigCloud(
 					this,
 					object.x,
@@ -118,7 +138,12 @@ export default class SampleScene extends Phaser.Scene {
 				sprite.setDepth(constants.DEPTHS.clouds);
 				this.add.existing(sprite);
 				this.objectsNeedsUpdate.add(sprite);
-			} else if (objectTypeIsCloudType(object.type)) {
+			} else if (
+				objectTypeIsCloudType(object.type) &&
+				boundingPolygon &&
+				guards.objectHasCoords(boundingPolygon) &&
+				guards.objectHasPolygon(boundingPolygon)
+			) {
 				const sprite = new SmallCloud(
 					this,
 					object.x,
@@ -140,7 +165,9 @@ export default class SampleScene extends Phaser.Scene {
 
 	update(time: number, delta: number): void {
 		super.update(time, delta);
-		this.player.update(time, delta);
+		this.networkController.sessions.forEach((player) => {
+			player.update(time, delta);
+		});
 		this.objectsNeedsUpdate.forEach((gameObject) => {
 			gameObject.update(time, delta);
 		});

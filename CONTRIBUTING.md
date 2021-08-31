@@ -12,7 +12,16 @@ This project is using [conventional commits](https://www.conventionalcommits.org
 
 1. Run `yarn` in the root.
 2. Navigate to the `black-pearl` folder.
-3. Run `yarn dev`.
+3. Create `.env` file by duplicating `.env.local`.
+4. Run `yarn dev`.
+
+## Whydah - Game server
+
+### Local development
+
+1. Run `yarn` in the root.
+2. Navigate to the `whydah` folder.
+3. Run `yarn dev`
 
 ## Fair wind - Assets
 

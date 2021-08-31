@@ -1,8 +1,12 @@
 import { Scene } from "phaser";
+import { ROOMS } from "@jog1t/ambrose-light";
 import * as constants from "~constants";
 import { creators, loaders } from "~utilities";
+import { UserDataController } from "~controllers";
 
 export default class Bootstrap extends Scene {
+	private userData = new UserDataController();
+
 	constructor() {
 		super(constants.SCENES.bootstrap);
 	}
@@ -31,6 +35,18 @@ export default class Bootstrap extends Scene {
 	/* eslint-enable */
 
 	private onLoadComplete() {
-		this.scene.start(constants.SCENES.sample);
+		const userName = this.userData.getOrSetUserName();
+		this.sync
+			.join(ROOMS.sampleRoom, userName)
+			.then(() => {
+				this.scene.start(constants.SCENES.sample);
+			})
+			.catch(() => {
+				// TODO(jog1t)
+				// eslint-disable-next-line no-alert
+				alert(
+					"There has been an error connecting to the sample room. Please try again later."
+				);
+			});
 	}
 }

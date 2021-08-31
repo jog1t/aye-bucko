@@ -1,0 +1,69 @@
+name: Deploy game
+
+on: push
+
+jobs:
+   config:
+      name: Determine config values
+      runs-on: self-hosted
+      outputs:
+         config: ${{steps.set-config.outputs.result}}
+      steps:
+         - uses: actions/checkout@v2
+         - uses: actions/github-script@v4
+           id: set-config
+           with:
+              script: return require('./.github/scripts/determine-config.js')({github, context, core, glob, io, exec})
+              result-encoding: json
+
+   build--black-pearl:
+      name: Build Black Pearl (game frontend)
+      env:
+         GAME_SERVER_URL: ${{fromJson(needs.config.outputs.config).backendAddress}}
+         BRANCH_NAME: ${{fromJson(needs.config.outputs.config).branchName}}
+         GAME_VERSION: ${{ github.sha }}
+      runs-on: self-hosted
+      needs:
+         - config
+      steps:
+         - uses: actions/checkout@v2
+         - uses: actions/setup-node@v2
+           with:
+              node-version: '14'
+         - run: npm -g install yarn
+         - run: yarn install
+         - run: cd black-pearl && yarn build
+         - run: cd black-pearl && docker build -t aye-bucko/black-pearl:${{ env.BRANCH_NAME }} .
+
+   build--whydah:
+      name: Build Whydah (game backend)
+      runs-on: self-hosted
+      needs:
+         - config
+      env:
+         FRONTEND_HOST: ${{fromJson(needs.config.outputs.config).frontendHost}}
+         BACKEND_HOST: ${{fromJson(needs.config.outputs.config).backendHost}}
+         BRANCH_NAME: ${{fromJson(needs.config.outputs.config).branchName}}
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+             node-version: '14'
+        - run: npm -g install yarn
+        - run: yarn install
+        - run: cd whydah && yarn build
+        - run: docker build -t aye-bucko/whydah:${{ env.BRANCH_NAME }} .
+
+   deploy:
+      name: Deploy
+      runs-on: self-hosted
+      env:
+         FRONTEND_HOST: ${{fromJson(needs.config.outputs.config).frontendHost}}
+         BACKEND_HOST: ${{fromJson(needs.config.outputs.config).backendHost}}
+         BRANCH_NAME: ${{fromJson(needs.config.outputs.config).branchName}}
+      needs:
+         - config
+         - build--black-pearl
+         - build--whydah
+      steps:
+         - run: docker-compose --project-name ${{env.BRANCH_NAME}} up -d --remove-orphans

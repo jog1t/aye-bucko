@@ -2,6 +2,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+const DotEnv = require("dotenv-webpack");
 
 module.exports = {
 	mode: "development",
@@ -34,8 +35,11 @@ module.exports = {
 		plugins: [new TsconfigPathsPlugin()],
 	},
 	output: {
-		filename: "bundle.js",
+		filename: "[name].[contenthash].js",
 		path: path.resolve(__dirname, "build"),
 	},
-	plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
+	plugins: [
+		new HtmlWebpackPlugin({ template: "./src/index.html" }),
+		new DotEnv({ systemvars: true }),
+	],
 };
