@@ -9,6 +9,6 @@
 		"moduleResolution": "node",
 		"strict": true,
 		"baseUrl": "./src",
-		"experimentalDecorators": true ,
+		"experimentalDecorators": true
 	}
 }

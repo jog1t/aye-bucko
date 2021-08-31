@@ -13,6 +13,8 @@ declare module "phaser" {
 
 export default class Game extends Phaser.Game {
 	constructor() {
+		// eslint-disable-next-line no-console
+		console.log("Aye Bucko!", `ver. ${process.env.GAME_VERSION}`);
 		super({
 			type: Phaser.AUTO,
 			scale: {
