@@ -6,16 +6,16 @@ services:
          - whydah
       labels:
          - traefik.enable=true
-         - traefik.http.routers.black-pearl.rule=Host(`${FRONTEND_HOST}`)
-         - traefik.http.routers.black-pearl.tls.certresolver=tls-challenge
+         - traefik.http.routers.black-pearl-${BRANCH_NAME}.rule=Host(`${FRONTEND_HOST}`)
+         - traefik.http.routers.black-pearl-${BRANCH_NAME}.tls.certresolver=tls-challenge
          - traefik.docker.network=proxy
 
    whydah:
       image: aye-bucko/whydah:${BRANCH_NAME}
       labels:
          - traefik.enable=true
-         - traefik.http.routers.whydah.rule=Host(`${BACKEND_HOST}`)
-         - traefik.http.routers.whydah.tls.certresolver=tls-challenge
+         - traefik.http.routers.whydah-${BRANCH_NAME}.rule=Host(`${BACKEND_HOST}`)
+         - traefik.http.routers.whydah-${BRANCH_NAME}.tls.certresolver=tls-challenge
          - traefik.docker.network=proxy
 
 networks:
