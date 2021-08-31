@@ -1,7 +1,7 @@
 module.exports = async ({ context, github }) => {
   return github.pulls.createReviewComment({
-    owner: context.repo().owner,
-    repo: context.repo().repo,
+    owner: context.repo.owner,
+    repo: context.repo.repo,
     pull_number: context.issue().number,
     body: `This pull request is being automatically deployed.
     
