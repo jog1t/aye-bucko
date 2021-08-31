@@ -1,0 +1,32 @@
+name: Cleanup
+on:
+   delete
+
+
+jobs:
+   config:
+      name: Determine config values
+      runs-on: self-hosted
+      outputs:
+         config: ${{steps.set-config.outputs.result}}
+      steps:
+         -  uses: actions/checkout@v2
+         -  uses: actions/github-script@v4
+            id: set-config
+            with:
+               script: return require('./.github/scripts/determine-config.js')({github, context, core, glob, io, exec})
+               result-encoding: json
+   cleanup:
+      name: Cleanup
+      runs-on: self-hosted
+      needs:
+         - config
+      env:
+         FRONTEND_HOST: ${{fromJson(needs.config.outputs.config).frontendHost}}
+         BACKEND_HOST: ${{fromJson(needs.config.outputs.config).backendHost}}
+         BRANCH_NAME: ${{fromJson(needs.config.outputs.config).branchName}}
+      steps:
+         - run: docker-compose --project-name ${{env.BRANCH_NAME}} down --remove-orphans
+         - run: docker rmi aye-bucko/black-pearl:${{env.BRANCH_NAME}}
+         - run: docker rmi aye-bucko/whydah:${{env.BRANCH_NAME}}
+         - run: yes | docker image prune -a

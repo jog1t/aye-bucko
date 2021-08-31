@@ -5,15 +5,14 @@
 		"target": "es6",
 		"jsx": "react",
 		"allowJs": true,
+		"strict": true,
 		"moduleResolution": "node",
 		"resolveJsonModule": false,
 		"baseUrl": "./src",
 		"paths": {
-			"~assets/*": ["../../fair-wind/*"],
-			"~shared/*": ["../../ambrose-light/*"],
-			"~shared": ["../../ambrose-light/index.ts"],
-
 			"~objects/*": ["./objects/*"],
+			"~objects": ["./objects/index.ts"],
+			"~controllers": ["./controllers/index.ts"],
 			"~scenes/*": ["./scenes/*"],
 			"~utilities": ["./utilities/index.ts"],
 			"~types": ["./types/index.ts"],
