@@ -9,7 +9,7 @@ This project is using [conventional commits](https://www.conventionalcommits.org
 ## Local development
 
 1. Download and install [node.js](https://nodejs.org/en/) and [yarn](https://yarnpkg.com/getting-started/install).
-2. Open up a terminal* and run`yarn` in the root directory.
+2. Open up a terminal* and run `yarn` in the root directory.
 3. Open second terminal* and launch frontend app and game server.
 4. Once everything is running, type `127.0.0.1:9000` in web browser.
 
