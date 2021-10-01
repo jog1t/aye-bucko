@@ -11,6 +11,7 @@ import {
 } from "~objects/decorations";
 import { NetworkPlayersGroup } from "~objects/network";
 import { guards } from "~utilities";
+import { CameraController } from "~controllers";
 
 function objectTypeIsCloudType(tileType: string): tileType is CloudType {
 	return Object.values(CloudType).includes(tileType as CloudType);
@@ -21,9 +22,12 @@ export default class SampleScene extends Phaser.Scene {
 
 	private networkController;
 
+	private cameraController;
+
 	constructor() {
 		super(constants.SCENES.sample);
 		this.networkController = new NetworkPlayersGroup(this);
+		this.cameraController = new CameraController(this);
 	}
 
 	create(): void {
@@ -36,14 +40,14 @@ export default class SampleScene extends Phaser.Scene {
 			NetworkPlayersGroup.EVENTS.ENTITY_ADD,
 			({ entity, isCurrentPlayer }) => {
 				if (isCurrentPlayer) {
-					this.cameras.main.startFollow(entity);
-					this.cameras.main.zoomTo(2, 500, Phaser.Math.Easing.Cubic.InOut);
+					this.cameraController.startFollow(entity);
 				}
 			}
 		);
 
 		this.physics.add.collider(terrain, this.networkController);
 		this.networkController.init();
+		this.cameraController.init();
 
 		this.scene.run(constants.SCENES.interface);
 	}
@@ -165,6 +169,7 @@ export default class SampleScene extends Phaser.Scene {
 
 	update(time: number, delta: number): void {
 		super.update(time, delta);
+		this.cameraController.update();
 		this.networkController.sessions.forEach((player) => {
 			player.update(time, delta);
 		});
