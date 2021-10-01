@@ -2,6 +2,8 @@ name: Post Enviroment URL
 on:
    pull_request_target:
       types: [opened, reopened]
+      paths-ignore:
+         - '*.md'
 
 
 jobs:
