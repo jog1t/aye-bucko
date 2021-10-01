@@ -11,16 +11,16 @@ const port = Number(process.env.PORT) || 3000;
 
 async function bootstrap() {
 	const app = express();
-	// app.use(
-	// 	cors({
-	// 		origin: (requestOrigin, callback) => {
-	// 			if (requestOrigin?.endsWith("jogit.pl")) {
-	// 				return callback(null, true);
-	// 			}
-	// 			return callback(new Error("Not allowed by CORS"));
-	// 		},
-	// 	})
-	// );
+	app.use(
+		cors({
+			origin: (requestOrigin, callback) => {
+				if (requestOrigin?.endsWith("jogit.pl")) {
+					return callback(null, true);
+				}
+				return callback(new Error("Not allowed by CORS"));
+			},
+		})
+	);
 	app.use(express.json());
 	app.use("/monitor", monitor());
 
