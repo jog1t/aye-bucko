@@ -21,6 +21,7 @@ This project is using [conventional commits](https://www.conventionalcommits.org
 2. Create `.env` file by duplicating `.env.local`.
 3. Run `yarn dev`.
 
+
 ### Whydah - Game server
 
 1. Navigate to the `whydah` folder.
