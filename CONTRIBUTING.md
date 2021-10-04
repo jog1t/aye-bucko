@@ -1,27 +1,31 @@
 # Contributing to Aye Bucko!
 
 All new things should happen through Pull Requests. Gameplay decisions should have corresponding issue or/and a [discussion thread](https://github.com/jog1t/aye-bucko/discussions/categories/gameplay-ideas).
-Any suggestions are highly appreciated. 
+Any suggestions are highly appreciated.
 
 ## Commits
 This project is using [conventional commits](https://www.conventionalcommits.org/).
 
-## Black pearl - The frontend app
+## Local development
 
-### Local development
+1. Download and install [node.js](https://nodejs.org/en/) and [yarn](https://yarnpkg.com/getting-started/install).
+2. Open up a terminal* and run `yarn` in the root directory.
+3. Open second terminal* and launch frontend app and game server.
+4. Once everything is running, type `127.0.0.1:9000` in web browser.
 
-1. Run `yarn` in the root.
-2. Navigate to the `black-pearl` folder.
-3. Create `.env` file by duplicating `.env.local`.
-4. Run `yarn dev`.
+*For Windows run PowerShell as Administrator
 
-## Whydah - Game server
+### Black pearl - The frontend app
 
-### Local development
+1. Navigate to the `black-pearl` folder.
+2. Create `.env` file by duplicating `.env.local`.
+3. Run `yarn dev`.
 
-1. Run `yarn` in the root.
-2. Navigate to the `whydah` folder.
-3. Run `yarn dev`
+
+### Whydah - Game server
+
+1. Navigate to the `whydah` folder.
+2. Run `yarn dev`
 
 ## Fair wind - Assets
 
@@ -53,10 +57,10 @@ Drag all source images from a specific folder and drop them into TexturePacker t
 1. Find a correct folder for your brand-new asset in the `fair-wind` folder.
 2. Define a proper constant in the `constants.ts` file.
 3. Load it
-    1. If it's an Atlas image, load it in the `loadAtlases.ts` file.
-    2. If it's a Tileset image or other type of image, load it in the `loadImages.ts` file.
+   1. If it's an Atlas image, load it in the `loadAtlases.ts` file.
+   2. If it's a Tileset image or other type of image, load it in the `loadImages.ts` file.
 4. 🎉 Tada! Now, you can use your brand-new object.
-   
+
 ### Animations
 
 #### Adding new
