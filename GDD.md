@@ -34,7 +34,7 @@ This game will be multiplayer only. There would be local (couch) and online mult
 
 ## Inputs
 
-- **Movement**
+- **Movement**<br>
   UI elements would be on left side of the screen.
   - Right
     - *Right arrow* key on keyboard
@@ -44,7 +44,7 @@ This game will be multiplayer only. There would be local (couch) and online mult
     - *Left arrow* key on keyboard
     - *A* key on keyboard
     - <u>UI element</u> with *left arrow*
-- **Action**
+- **Action**<br>
   UI elements would be on right side of the screen.
   - Jump
     - *Up arrow* key on keyboard
