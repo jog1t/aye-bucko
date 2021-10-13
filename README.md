@@ -17,6 +17,7 @@
 <p align="center">
 Simple and fun 2D platformer, where you and your friends go through various maps while picking up all pirate goodies, jumping through traps and obstacles, and building your path to the most precious pirate reward - the treasure chest.
 </p>
+
 ### Technologies / libraries used
 
 - [Node.js](https://nodejs.org/en/)
