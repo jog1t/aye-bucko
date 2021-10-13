@@ -8,16 +8,18 @@
   <span> · </span>
   <a href="CONTRIBUTING.md">Contribute</a>
   <span> · </span>
+  <a href="GDD.md">Game Design Document</a>
+  <span> · </span>
   <a href="https://github.com/jog1t/aye-bucko/projects/1">Current status</a>
 </h3>
+
 
 <p align="center">
 Simple and fun 2D platformer, where you and your friends go through various maps while picking up all pirate goodies, jumping through traps and obstacles, and building your path to the most precious pirate reward - the treasure chest.
 </p>
-
 ### Technologies / libraries used
 
-- Node.js
+- [Node.js](https://nodejs.org/en/)
 - [Phaser](https://phaser.io/)
 - [Colyseus](https://www.colyseus.io/)
 - [Geckos.io](https://geckosio.github.io/)
