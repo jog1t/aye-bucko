@@ -1,4 +1,4 @@
-<p align="center"><b>This Game Design Document is still in progress.</b></p>
+<p align="center"><b>This Game Design Document is put on hold.</b></p>
 
 # Overview
 
@@ -18,7 +18,8 @@
   * 16.03.2021 - 25.04.2021<br>
     Due to personal affairs development was postponed for 5 months.
 
-  * 26.09.2021 - 03.07.2022
+  * 01.07<br>
+    Project has been put on hold.
 
 ## Elevator Pitch
 

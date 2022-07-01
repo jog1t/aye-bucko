@@ -4,19 +4,19 @@
 <h1 align="center">Aye bucko!</h1>
 
 <h3 align="center">
-  <a href="https://aye-bucko.vercel.app/">Play</a>
-  <span> · </span>
-  <a href="CONTRIBUTING.md">Contribute</a>
-  <span> · </span>
   <a href="GDD.md">Game Design Document</a>
-  <span> · </span>
-  <a href="https://github.com/jog1t/aye-bucko/projects/1">Current status</a>
 </h3>
 
+<br/>
+<h2 align="center">⚠️ This project is currently on hold.</h2>
+<p align="center"><b>Thanks to everyone who was involved in the development process.</b></p>
+<br/>
 
 <p align="center">
 Simple and fun 2D platformer, where you and your friends go through various maps while picking up all pirate goodies, jumping through traps and obstacles, and building your path to the most precious pirate reward - the treasure chest.
 </p>
+
+---
 
 ### Technologies / libraries used
 
@@ -32,10 +32,3 @@ Simple and fun 2D platformer, where you and your friends go through various maps
 - `whydah` - multiplayer server
 - `fair-wind` - compiled / packed assets
 - `hai-peng` - source assets
-
-### Contributing
-
-More information about how to contribute can be found [here](https://github.com/jog1t/aye-bucko/blob/master/CONTRIBUTING.md). All suggestions, ideas and bug reports are highly appreciated.
-
----
-<small>Any questions or suggestions? Head over to the [discussions tab](https://github.com/jog1t/aye-bucko/discussions)! </small>
